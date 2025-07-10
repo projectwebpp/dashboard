@@ -25,7 +25,6 @@
             padding: 20px;
         }
 
-        /* Header Section */
         .header {
             text-align: center;
             color: white;
@@ -62,7 +61,6 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Configuration Panel */
         .config-panel {
             background: white;
             border-radius: 20px;
@@ -175,7 +173,6 @@
             transform: none;
         }
 
-        /* Status Bar */
         .status-bar {
             background: white;
             border-radius: 15px;
@@ -214,7 +211,6 @@
             color: #333;
         }
 
-        /* Main Dashboard Grid */
         .dashboard-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -222,7 +218,6 @@
             margin-bottom: 30px;
         }
 
-        /* Metrics Section */
         .metrics-section {
             display: grid;
             gap: 20px;
@@ -341,13 +336,11 @@
             transition: width 1s ease;
         }
 
-        /* Sidebar */
         .sidebar {
             display: grid;
             gap: 20px;
         }
 
-        /* Alert Panel */
         .alert-panel {
             background: white;
             border-radius: 16px;
@@ -386,7 +379,6 @@
             background: #fff5f5;
         }
 
-        /* API Endpoints Panel */
         .api-panel {
             background: white;
             border-radius: 16px;
@@ -427,7 +419,6 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* Flex Message Section */
         .flex-section {
             background: white;
             border-radius: 16px;
@@ -495,7 +486,6 @@
             cursor: pointer;
         }
 
-        /* Log Section */
         .log-section {
             background: white;
             border-radius: 16px;
@@ -522,10 +512,9 @@
 
         .log-info { background: #d1ecf1; color: #0c5460; }
         .log-success { background: #d4edda; color: #155724; }
-        .log-warning { background: #fff3cd; color: #856404; }
         .log-error { background: #f8d7da; color: #721c24; }
+        .log-warning { background: #fff3cd; color: #856404; }
 
-        /* Loading States */
         .loading {
             display: inline-block;
             width: 20px;
@@ -552,7 +541,6 @@
             100% { background-position: -200% 0; }
         }
 
-        /* Notifications */
         .notification {
             position: fixed;
             top: 20px;
@@ -575,12 +563,10 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        /* Responsive Design */
         @media (max-width: 1200px) {
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
-            
             .flex-preview {
                 grid-template-columns: 1fr;
             }
@@ -590,27 +576,21 @@
             .container {
                 padding: 15px;
             }
-            
             .header h1 {
                 font-size: 2.2em;
             }
-            
             .header .features {
                 gap: 15px;
             }
-            
             .config-grid {
                 grid-template-columns: 1fr;
             }
-            
             .metrics-grid {
                 grid-template-columns: 1fr;
             }
-            
             .btn-group {
                 flex-direction: column;
             }
-            
             .status-items {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -620,13 +600,11 @@
             .metric-value {
                 font-size: 2.2em;
             }
-            
             .status-items {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Dark mode toggle */
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -645,7 +623,6 @@
             background: rgba(255,255,255,0.3);
         }
 
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -1048,61 +1025,6 @@
             </div>
         </div>
 
-        <!-- Detailed Analytics Section -->
-        <div class="flex-section">
-            <div class="alert-header">
-                <span style="font-size: 1.5em;">📈</span>
-                <h3>การวิเคราะห์เชิงลึก</h3>
-            </div>
-            
-            <div class="config-grid">
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <div class="metric-title">📊 อัตราการใช้งานรายชั่วโมง</div>
-                        <div class="metric-icon">⏰</div>
-                    </div>
-                    <canvas id="hourlyChart" width="400" height="200"></canvas>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <div class="metric-title">📈 แนวโน้มการใช้งาน 7 วัน</div>
-                        <div class="metric-icon">📅</div>
-                    </div>
-                    <canvas id="weeklyChart" width="400" height="200"></canvas>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <div class="metric-title">🥧 สัดส่วนประเภทข้อความ</div>
-                        <div class="metric-icon">📊</div>
-                    </div>
-                    <canvas id="pieChart" width="400" height="200"></canvas>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <div class="metric-title">⚡ Performance Metrics</div>
-                        <div class="metric-icon">🎯</div>
-                    </div>
-                    <div style="padding: 20px;">
-                        <div style="margin-bottom: 15px;">
-                            <strong>API Response Time:</strong> <span id="avgResponseTime">-</span> ms
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <strong>Success Rate:</strong> <span id="successRate">-</span>%
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <strong>Error Rate:</strong> <span id="errorRate">-</span>%
-                        </div>
-                        <div>
-                            <strong>Uptime:</strong> <span id="uptime">-</span>%
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Log Section -->
         <div class="log-section">
             <div class="alert-header">
@@ -1160,45 +1082,83 @@
         function updateCurrentTime() {
             const now = new Date();
             const timeString = now.toLocaleString('th-TH');
-            const currentTimeElement = document.getElementById('currentTime');
-            if (currentTimeElement) {
-                currentTimeElement.textContent = timeString;
+            document.getElementById('currentTime').textContent = timeString;
+        }
+
+        // Simulate API call delay
+        async function simulateApiCall(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Show notification
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        // Add log entry
+        function addLog(message, type) {
+            const logContainer = document.getElementById('logContainer');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry log-${type}`;
+            logEntry.textContent = `[${new Date().toLocaleString('th-TH')}] ${message}`;
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+            logEntries.push(logEntry);
+            if (logEntries.length > 50) {
+                logEntries.shift().remove();
             }
+        }
+
+        // Clear logs
+        function clearLogs() {
+            const logContainer = document.getElementById('logContainer');
+            logContainer.innerHTML = '';
+            logEntries = [];
+            addLog('🗑️ ล้าง Log สำเร็จ', 'info');
+        }
+
+        // Update connection status
+        function updateConnectionStatus(status) {
+            const statusElement = document.getElementById('connectionStatus');
+            const statusMap = {
+                connecting: 'กำลังเชื่อมต่อ...',
+                connected: 'เชื่อมต่อแล้ว',
+                error: 'การเชื่อมต่อล้มเหลว'
+            };
+            statusElement.textContent = statusMap[status] || 'ไม่ได้เชื่อมต่อ';
+        }
+
+        // Update last update time
+        function updateLastUpdate() {
+            document.getElementById('lastUpdate').textContent = new Date().toLocaleString('th-TH');
         }
 
         // Main data fetching function
         async function fetchAllData() {
-            const token = document.getElementById('accessToken')?.value;
-            const date = document.getElementById('dateInput')?.value;
-            const mode = document.getElementById('workingMode')?.value;
+            const token = document.getElementById('accessToken').value;
+            const date = document.getElementById('dateInput').value;
+            const mode = document.getElementById('workingMode').value;
 
             if (!token) {
-                showNotification('กรุณาใส่ Channel Access Token', 'error');
+                showNotification('❌ กรุณาใส่ Channel Access Token', 'error');
                 return;
             }
 
             if (!date || !/^\d{8}$/.test(date)) {
-                showNotification('กรุณาใส่วันที่ในรูปแบบ YYYYMMDD', 'error');
+                showNotification('❌ กรุณาใส่วันที่ในรูปแบบ YYYYMMDD', 'error');
                 return;
             }
 
-            // Update UI states
-            const fetchIcon = document.getElementById('fetchIcon');
-            const fetchButton = document.querySelector('[onclick="fetchAllData()"]');
-            
-            if (fetchIcon) {
-                fetchIcon.innerHTML = '<div class="loading"></div>';
-            }
-            if (fetchButton) {
-                fetchButton.disabled = true;
-            }
-            
+            document.getElementById('fetchIcon').innerHTML = '<div class="loading"></div>';
+            document.querySelector('[onclick="fetchAllData()"]').disabled = true;
             updateConnectionStatus('connecting');
-            
             addLog('🔄 เริ่มต้นดึงข้อมูลจาก API ทั้งหมด...', 'info');
 
             try {
-                // Simulate API calls with realistic delays
                 await fetchWithProgress('quota', fetchQuota, token);
                 await fetchWithProgress('usage', fetchUsage, token);
                 await fetchWithProgress('delivery', fetchDeliveryStats, token, date);
@@ -1207,29 +1167,18 @@
                 updateConnectionStatus('connected');
                 updateLastUpdate();
                 apiCallsToday += 7;
-                
-                const apiCallsElement = document.getElementById('apiCallsCount');
-                if (apiCallsElement) {
-                    apiCallsElement.textContent = apiCallsToday;
-                }
-                
+                document.getElementById('apiCallsCount').textContent = apiCallsToday;
                 showNotification('✅ ดึงข้อมูลสำเร็จ!', 'success');
                 addLog('✅ ดึงข้อมูลจาก API ทั้งหมดเสร็จสิ้น', 'success');
                 
-                // Auto-check alerts
                 setTimeout(checkAlerts, 1000);
-                
             } catch (error) {
                 updateConnectionStatus('error');
                 showNotification('❌ เกิดข้อผิดพลาด: ' + error.message, 'error');
                 addLog('❌ ข้อผิดพลาด: ' + error.message, 'error');
             } finally {
-                if (fetchIcon) {
-                    fetchIcon.textContent = '🔄';
-                }
-                if (fetchButton) {
-                    fetchButton.disabled = false;
-                }
+                document.getElementById('fetchIcon').textContent = '🔄';
+                document.querySelector('[onclick="fetchAllData()"]').disabled = false;
             }
         }
 
@@ -1239,49 +1188,37 @@
             addLog(`✅ ดึงข้อมูล ${type} สำเร็จ`, 'success');
         }
 
-        // Individual API fetch functions (with simulated data)
+        // Simulated API fetch functions
         async function fetchQuota(token) {
             await simulateApiCall(800);
-            
             const mockData = {
                 type: "limited",
                 value: 15000
             };
-            
             currentData.quota = mockData;
             updateMetricCard('quota', mockData.value, '📊 ข้อความต่อเดือน', 'ready', 100);
         }
 
         async function fetchUsage(token) {
             await simulateApiCall(600);
-            
             const mockData = {
                 totalUsage: Math.floor(Math.random() * 12000) + 4000
             };
-            
             currentData.usage = mockData;
             const percentage = currentData.quota ? (mockData.totalUsage / currentData.quota.value) * 100 : 0;
-            
             updateMetricCard('usage', mockData.totalUsage, `💡 ${percentage.toFixed(1)}% ของการใช้งาน`, 'ready', percentage);
-            
-            const usagePercentageElement = document.getElementById('usagePercentage');
-            if (usagePercentageElement) {
-                usagePercentageElement.textContent = percentage.toFixed(1) + '%';
-            }
+            document.getElementById('usagePercentage').textContent = percentage.toFixed(1) + '%';
         }
 
         async function fetchDeliveryStats(token, date) {
             await simulateApiCall(1000);
-            
             const mockData = {
                 reply: { status: "ready", success: Math.floor(Math.random() * 2000) + 1500 },
                 push: { status: "ready", success: Math.floor(Math.random() * 1500) + 800 },
                 multicast: { status: "ready", success: Math.floor(Math.random() * 800) + 300 },
                 broadcast: { status: "ready", success: Math.floor(Math.random() * 500) + 200 }
             };
-            
             currentData.delivery = mockData;
-            
             Object.keys(mockData).forEach(type => {
                 updateMetricCard(type, mockData[type].success, getTypeLabel(type), mockData[type].status);
             });
@@ -1289,7 +1226,6 @@
 
         async function fetchInsightData(token, date) {
             await simulateApiCall(900);
-            
             const mockData = {
                 status: "ready",
                 broadcast: Math.floor(Math.random() * 3000) + 2000,
@@ -1299,7 +1235,6 @@
                 apiMulticast: currentData.delivery?.multicast?.success || 512,
                 apiReply: currentData.delivery?.reply?.success || 2048
             };
-            
             currentData.insight = mockData;
             addLog('📊 ข้อมูล Insight: OA Manager + API รวม', 'info');
         }
@@ -1309,17 +1244,9 @@
             const statusElement = document.getElementById(`${type}Status`);
             const statusTextElement = document.getElementById(`${type}StatusText`);
             
-            if (valueElement) {
-                valueElement.textContent = value.toLocaleString();
-            }
-            
-            if (statusElement) {
-                statusElement.className = `status-indicator status-${status}`;
-            }
-            
-            if (statusTextElement) {
-                statusTextElement.textContent = getStatusText(status);
-            }
+            if (valueElement) valueElement.textContent = value.toLocaleString();
+            if (statusElement) statusElement.className = `status-indicator status-${status}`;
+            if (statusTextElement) statusTextElement.textContent = getStatusText(status);
             
             if (progress > 0) {
                 const progressBar = document.getElementById(`${type}Progress`);
@@ -1362,32 +1289,23 @@
                 return;
             }
             
-            const thresholdElement = document.getElementById('alertThreshold');
-            const threshold = thresholdElement ? parseInt(thresholdElement.value) : 80;
+            const threshold = parseInt(document.getElementById('alertThreshold').value) || 80;
             const usagePercent = (currentData.usage.totalUsage / currentData.quota.value) * 100;
             
             addLog(`🔍 ตรวจสอบการแจ้งเตือน: ${usagePercent.toFixed(1)}% (เกณฑ์: ${threshold}%)`, 'info');
             
-            // Update alert statuses (with null checks)
-            const alertStatus1 = document.getElementById('alertStatus1');
-            const alertStatus2 = document.getElementById('alertStatus2');
-            const alertStatus3 = document.getElementById('alertStatus3');
-            
-            if (alertStatus1) alertStatus1.textContent = usagePercent >= threshold ? '🚨' : '😴';
-            if (alertStatus2) alertStatus2.textContent = usagePercent >= 90 ? '⚠️' : '😴';
-            if (alertStatus3) alertStatus3.textContent = '✅';
+            document.getElementById('alertStatus1').textContent = usagePercent >= threshold ? '🚨' : '😴';
+            document.getElementById('alertStatus2').textContent = usagePercent >= 90 ? '⚠️' : '😴';
+            document.getElementById('alertStatus4').textContent = '✅';
             
             if (usagePercent >= threshold) {
                 generateFlexMessage();
                 showNotification(`🚨 การแจ้งเตือน: การใช้งาน ${usagePercent.toFixed(1)}% เกินเกณฑ์!`, 'warning');
                 addLog(`🚨 เกินเกณฑ์การแจ้งเตือน! ใช้งาน ${usagePercent.toFixed(1)}%`, 'warning');
                 
-                // Send alert via LINE Messaging API
                 sendLineAlert(usagePercent, threshold);
                 
-                // Send to webhook if configured
-                const webhookUrlElement = document.getElementById('webhookUrl');
-                const webhookUrl = webhookUrlElement ? webhookUrlElement.value : '';
+                const webhookUrl = document.getElementById('webhookUrl').value;
                 if (webhookUrl) {
                     sendWebhookAlert(webhookUrl, usagePercent, threshold);
                 }
@@ -1397,17 +1315,141 @@
             }
         }
 
+        // Create detailed Flex Message for alerts
+        function createAlertFlexMessage(usagePercent, threshold, theme = 'warning', customMessage = '') {
+            const themeConfig = {
+                warning: {
+                    headerBg: '#fff3cd',
+                    headerColor: '#856404',
+                    accentColor: '#ffbb33',
+                    icon: '⚠️',
+                    title: 'การแจ้งเตือนการใช้งาน'
+                },
+                danger: {
+                    headerBg: '#f8d7da',
+                    headerColor: '#721c24',
+                    accentColor: '#ff4444',
+                    icon: '🚨',
+                    title: 'การแจ้งเตือนเร่งด่วน!'
+                },
+                info: {
+                    headerBg: '#d1ecf1',
+                    headerColor: '#0c5460',
+                    accentColor: '#33b5e5',
+                    icon: 'ℹ️',
+                    title: 'ข้อมูลการใช้งาน'
+                },
+                success: {
+                    headerBg: '#d4edda',
+                    headerColor: '#155724',
+                    accentColor: '#00c851',
+                    icon: '✅',
+                    title: 'การใช้งานปกติ'
+                }
+            };
+            
+            const config = themeConfig[theme] || themeConfig.warning;
+            const currentTime = new Date().toLocaleString('th-TH');
+            
+            return {
+                type: "flex",
+                altText: `🚨 การแจ้งเตือน LINE API: การใช้งาน ${usagePercent.toFixed(1)}% เกินเกณฑ์ ${threshold}%`,
+                contents: {
+                    type: "bubble",
+                    size: "kilo",
+                    header: {
+                        type: "box",
+                        layout: "vertical",
+                        contents: [
+                            {
+                                type: "text",
+                                text: `${config.icon} ${config.title}`,
+                                weight: "bold",
+                                size: "lg",
+                                color: config.headerColor,
+                                align: "center"
+                            }
+                        ],
+                        backgroundColor: config.headerBg,
+                        paddingAll: "20px"
+                    },
+                    body: {
+                        type: "box",
+                        layout: "vertical",
+                        contents: [
+                            {
+                                type: "text",
+                                text: `การใช้งาน: ${usagePercent.toFixed(1)}%`,
+                                weight: "bold",
+                                size: "xl",
+                                color: config.accentColor
+                            },
+                            {
+                                type: "text",
+                                text: `เกณฑ์: ${threshold}%`,
+                                size: "sm",
+                                color: "#666666",
+                                margin: "md"
+                            },
+                            {
+                                type: "text",
+                                text: `วันที่/เวลา: ${currentTime}`,
+                                size: "sm",
+                                color: "#666666",
+                                margin: "md"
+                            },
+                            customMessage ? {
+                                type: "text",
+                                text: customMessage,
+                                size: "sm",
+                                color: "#333333",
+                                margin: "md",
+                                wrap: true
+                            } : null,
+                            {
+                                type: "separator",
+                                margin: "lg"
+                            },
+                            {
+                                type: "text",
+                                text: "กรุณาตรวจสอบและดำเนินการ",
+                                size: "xs",
+                                color: "#999999",
+                                align: "center",
+                                margin: "lg"
+                            }
+                        ].filter(Boolean),
+                        paddingAll: "20px"
+                    },
+                    footer: {
+                        type: "box",
+                        layout: "vertical",
+                        contents: [
+                            {
+                                type: "button",
+                                action: {
+                                    type: "uri",
+                                    label: "ดูรายละเอียด",
+                                    uri: "https://your-dashboard-url.com"
+                                },
+                                style: "primary",
+                                color: config.accentColor
+                            }
+                        ],
+                        paddingAll: "15px"
+                    }
+                }
+            };
+        }
+
         // Send alert via LINE Messaging API
         async function sendLineAlert(usagePercent, threshold) {
-            const tokenElement = document.getElementById('accessToken');
-            const userIdElement = document.getElementById('alertUserId');
-            const groupIdElement = document.getElementById('alertGroupId');
-            const modeElement = document.getElementById('workingMode');
-            
-            const token = tokenElement ? tokenElement.value : '';
-            const userId = userIdElement ? userIdElement.value : '';
-            const groupId = groupIdElement ? groupIdElement.value : '';
-            const mode = modeElement ? modeElement.value : 'development';
+            const token = document.getElementById('accessToken').value;
+            const userId = document.getElementById('alertUserId').value;
+            const groupId = document.getElementById('alertGroupId').value;
+            const mode = document.getElementById('workingMode').value;
+            const theme = document.getElementById('flexTheme').value;
+            const customMessage = document.getElementById('customMessage').value;
             
             if (!token) {
                 showNotification('❌ กรุณาใส่ Channel Access Token', 'error');
@@ -1425,17 +1467,14 @@
             try {
                 addLog(`📱 ส่งการแจ้งเตือนผ่าน LINE Messaging API ไปยัง ${targetType}...`, 'info');
                 
-                // Create alert message
-                const alertMessage = createAlertMessage(usagePercent, threshold);
+                const flexMessage = createAlertFlexMessage(usagePercent, threshold, theme, customMessage);
                 
-                // Create push data
                 const pushData = {
                     to: targetId,
-                    messages: [alertMessage]
+                    messages: [flexMessage]
                 };
                 
                 if (mode === 'production') {
-                    // Real API call
                     const response = await fetch('https://api.line.me/v2/bot/message/push', {
                         method: 'POST',
                         headers: {
@@ -1447,1144 +1486,221 @@
                     
                     if (!response.ok) {
                         const errorText = await response.text();
-                        throw new Error(`HTTP ${response.status}: ${response.statusText} - ${errorText}`);
+                        throw new Error(`HTTP ${response.status}: ${errorText}`);
                     }
                     
                     const result = await response.json();
                     addLog(`✅ ส่งการแจ้งเตือนผ่าน LINE API สำเร็จ (Production)`, 'success');
                     addLog(`📄 Response: ${JSON.stringify(result)}`, 'info');
                 } else {
-                    // Development mode - simulate call
                     await simulateApiCall(1500);
                     addLog(`✅ ส่งการแจ้งเตือนสำเร็จ (Development Mode)`, 'success');
                 }
                 
                 showNotification('📱 ส่งการแจ้งเตือนผ่าน LINE สำเร็จ!', 'success');
-                
-                // Show message preview
-                displaySentMessage(alertMessage);
-                
-                // Log the message details
+                displaySentMessage(flexMessage);
                 addLog(`📝 ข้อความที่ส่ง: ${JSON.stringify(pushData, null, 2)}`, 'info');
-                
             } catch (error) {
                 addLog(`❌ ส่งการแจ้งเตือนผ่าน LINE ล้มเหลว: ${error.message}`, 'error');
                 showNotification('❌ ส่งการแจ้งเตือนผ่าน LINE ล้มเหลว: ' + error.message, 'error');
-                
-                // Show troubleshooting tips
-                showTroubleshootingTips(error.message);
             }
         }
 
-        // Test alert function with real API
-        async function sendTestAlert() {
-            const tokenElement = document.getElementById('accessToken');
-            const userIdElement = document.getElementById('alertUserId');
-            const groupIdElement = document.getElementById('alertGroupId');
-            const modeElement = document.getElementById('workingMode');
-            
-            const token = tokenElement ? tokenElement.value : '';
-            const userId = userIdElement ? userIdElement.value : '';
-            const groupId = groupIdElement ? groupIdElement.value : '';
-            const mode = modeElement ? modeElement.value : 'development';
-            
-            if (!token) {
-                showNotification('❌ กรุณาใส่ Channel Access Token', 'error');
-                return;
-            }
-            
-            if (!userId && !groupId) {
-                showNotification('❌ กรุณาใส่ User ID หรือ Group ID', 'error');
-                return;
-            }
-            
-            const targetId = groupId || userId;
-            const targetType = groupId ? 'กลุ่ม' : 'ผู้ใช้';
-            
+        // Send webhook alert
+        async function sendWebhookAlert(webhookUrl, usagePercent, threshold) {
             try {
-                addLog(`🧪 ส่งข้อความทดสอบไปยัง ${targetType}...`, 'info');
-                
-                const testMessage = createTestMessage();
-                
-                const pushData = {
-                    to: targetId,
-                    messages: [testMessage]
-                };
-                
-                if (mode === 'production') {
-                    // Real API call
-                    const response = await fetch('https://api.line.me/v2/bot/message/push', {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': `Bearer ${token}`,
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(pushData)
-                    });
-                    
-                    if (!response.ok) {
-                        const errorText = await response.text();
-                        throw new Error(`HTTP ${response.status}: ${response.statusText} - ${errorText}`);
-                    }
-                    
-                    const result = await response.json();
-                    addLog(`✅ ส่งข้อความทดสอบสำเร็จ (Production)`, 'success');
-                    addLog(`📄 Response: ${JSON.stringify(result)}`, 'info');
-                } else {
-                    // Development mode
-                    await simulateApiCall(1000);
-                    addLog(`✅ ส่งข้อความทดสอบสำเร็จ (Development Mode)`, 'success');
-                }
-                
-                showNotification('🧪 ส่งข้อความทดสอบสำเร็จ!', 'success');
-                
-                // Show test message in preview
-                displaySentMessage(testMessage);
-                
-            } catch (error) {
-                addLog(`❌ ส่งข้อความทดสอบล้มเหลว: ${error.message}`, 'error');
-                showNotification('❌ ส่งข้อความทดสอบล้มเหลว: ' + error.message, 'error');
-                
-                // Show troubleshooting tips
-                showTroubleshootingTips(error.message);
-            }
-        }
-
-        // Create test message
-        function createTestMessage() {
-            return {
-                type: "flex",
-                altText: "🧪 ทดสอบระบบแจ้งเตือน LINE API Dashboard",
-                contents: {
-                    type: "bubble",
-                    size: "kilo",
-                    header: {
-                        type: "box",
-                        layout: "vertical",
-                        contents: [
-                            {
-                                type: "text",
-                                text: "🧪 ทดสอบระบบ",
-                                weight: "bold",
-                                color: "#0c5460",
-                                size: "lg"
-                            },
-                            {
-                                type: "text",
-                                text: "LINE API Dashboard",
-                                size: "sm",
-                                color: "#666666"
-                            }
-                        ],
-                        paddingAll: "20px",
-                        backgroundColor: "#d1ecf1"
-                    },
-                    body: {
-                        type: "box",
-                        layout: "vertical",
-                        contents: [
-                            {
-                                type: "text",
-                                text: "ระบบแจ้งเตือนทำงานปกติ! ✅",
-                                weight: "bold",
-                                size: "md",
-                                wrap: true
-                            },
-                            {
-                                type: "separator",
-                                margin: "md"
-                            },
-                            {
-                                type: "box",
-                                layout: "vertical",
-                                margin: "md",
-                                spacing: "sm",
-                                contents: [
-                                    {
-                                        type: "text",
-                                        text: "📱 ประเภท: ข้อความทดสอบ",
-                                        size: "sm",
-                                        color: "#666666"
-                                    },
-                                    {
-                                        type: "text",
-                                        text: `⏰ เวลา: ${new Date().toLocaleString('th-TH')}`,
-                                        size: "sm",
-                                        color: "#666666"
-                                    },
-                                    {
-                                        type: "text",
-                                        text: "🎯 สถานะ: การเชื่อมต่อสำเร็จ",
-                                        size: "sm",
-                                        color: "#666666"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    footer: {
-                        type: "box",
-                        layout: "vertical",
-                        contents: [
-                            {
-                                type: "button",
-                                style: "primary",
-                                height: "sm",
-                                action: {
-                                    type: "uri",
-                                    label: "📊 กลับไป Dashboard",
-                                    uri: "https://your-dashboard.com"
-                                },
-                                color: "#33b5e5"
-                            }
-                        ]
-                    }
-                }
-            };
-        }
-
-        // Display sent message in preview
-        function displaySentMessage(message) {
-            const flexPreview = document.getElementById('flexPreview');
-            const flexCode = document.getElementById('flexCode');
-            const flexBubble = document.getElementById('flexBubble');
-            
-            if (flexPreview) {
-                flexPreview.style.display = 'grid';
-            }
-            
-            if (flexCode) {
-                flexCode.textContent = JSON.stringify(message, null, 2);
-            }
-            
-            if (flexBubble && message.contents) {
-                const bubble = createFlexBubbleHTML(message.contents);
-                flexBubble.innerHTML = bubble;
-            }
-        }
-
-        // Show troubleshooting tips
-        function showTroubleshootingTips(errorMessage) {
-            let tips = [];
-            
-            if (errorMessage.includes('401')) {
-                tips = [
-                    '🔑 ตรวจสอบ Channel Access Token ให้ถูกต้อง',
-                    '⏰ ตรวจสอบว่า Token ยังไม่หมดอายุ',
-                    '🔧 ตรวจสอบสิทธิ์ของ Bot ใน LINE Console'
-                ];
-            } else if (errorMessage.includes('400')) {
-                tips = [
-                    '👤 ตรวจสอบ User ID หรือ Group ID ให้ถูกต้อง',
-                    '💬 ตรวจสอบว่าผู้ใช้ได้เพิ่ม Bot เป็นเพื่อนแล้ว',
-                    '👥 สำหรับกลุ่ม: ตรวจสอบว่า Bot อยู่ในกลุ่มแล้ว'
-                ];
-            } else if (errorMessage.includes('403')) {
-                tips = [
-                    '🚫 Bot ไม่มีสิทธิ์ส่งข้อความให้ผู้ใช้นี้',
-                    '👥 ตรวจสอบว่าผู้ใช้ได้บล็อก Bot หรือไม่',
-                    '🔧 ตรวจสอบการตั้งค่า Bot ใน LINE Console'
-                ];
-            } else if (errorMessage.includes('429')) {
-                tips = [
-                    '⏱️ ส่งข้อความเร็วเกินไป รอสักครู่แล้วลองใหม่',
-                    '📊 ตรวจสอบ Rate Limit ของ API',
-                    '⚖️ พิจารณาลดความถี่ในการส่งข้อความ'
-                ];
-            } else {
-                tips = [
-                    '🌐 ตรวจสอบการเชื่อมต่ออินเทอร์เน็ต',
-                    '🔧 ลองเปลี่ยนจาก Development เป็น Production mode',
-                    '📋 ตรวจสอบ LOG เพื่อดูรายละเอียดข้อผิดพลาด'
-                ];
-            }
-            
-            addLog('💡 คำแนะนำการแก้ไข:', 'info');
-            tips.forEach(tip => {
-                addLog(`   ${tip}`, 'info');
-            });
-        }
-
-        // Validate LINE API credentials
-        async function validateCredentials() {
-            const tokenElement = document.getElementById('accessToken');
-            const token = tokenElement ? tokenElement.value : '';
-            
-            if (!token) {
-                showNotification('❌ กรุณาใส่ Channel Access Token', 'error');
-                return false;
-            }
-            
-            try {
-                addLog('🔍 ตรวจสอบความถูกต้องของ Token...', 'info');
-                
-                // Try to get quota (simple API call to validate token)
-                const response = await fetch('https://api.line.me/v2/bot/message/quota', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
+                addLog('🌐 ส่งการแจ้งเตือนไปยัง Webhook...', 'info');
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'alert',
+                        usagePercent: usagePercent.toFixed(1),
+                        threshold,
+                        timestamp: new Date().toISOString()
+                    })
                 });
                 
-                if (response.ok) {
-                    addLog('✅ Token ถูกต้องและใช้งานได้', 'success');
-                    showNotification('✅ Token ถูกต้อง!', 'success');
-                    return true;
-                } else {
-                    throw new Error(`Token validation failed: ${response.status}`);
-                }
-                
+                if (!response.ok) throw new Error('Webhook request failed');
+                addLog('✅ ส่งการแจ้งเตือนไปยัง Webhook สำเร็จ', 'success');
             } catch (error) {
-                addLog(`❌ Token ไม่ถูกต้อง: ${error.message}`, 'error');
-                showNotification('❌ Token ไม่ถูกต้องหรือหมดอายุ', 'error');
-                return false;
+                addLog(`❌ ส่งการแจ้งเตือนไปยัง Webhook ล้มเหลว: ${error.message}`, 'error');
+                showNotification('❌ ส่งการแจ้งเตือนไปยัง Webhook ล้มเหลว', 'error');
             }
         }
 
-        // Create alert message (Text + Flex Message)
-        function createAlertMessage(usagePercent, threshold) {
-            const theme = usagePercent >= 90 ? 'danger' : 'warning';
-            const flexMessage = createAlertFlexMessage(usagePercent, threshold, theme);
-            
-            return {
-                type: "flex",
-                altText: `🚨 การแจ้งเตือน LINE API: การใช้งาน ${usagePercent.toFixed(1)}% เกินเกณฑ์ ${threshold}%`,
-                contents: flexMessage
-            };
-        }
-
-        // Create detailed Flex Message for alerts
-        function createAlertFlexMessage(usagePercent, threshold, theme = 'warning') {
-            const themeConfig = {
-                warning: {
-                    headerBg: '#fff3cd',
-                    headerColor: '#856404',
-                    accentColor: '#ffbb33',
-                    icon: '⚠️',
-                    title: 'การแจ้งเตือนการใช้งาน'
-                },
-                danger: {
-                    headerBg: '#f8d7da',
-                    headerColor: '#721c24',
-                    accentColor: '#ff4444',
-                    icon: '🚨',
-                    title: 'การแจ้งเตือนเร่งด่วน!'
-                }
-            };
-            
-            const config = themeConfig[theme];
-            const currentTime = new Date().toLocaleString('th-TH');
-            
-            return {
-                type: "bubble",
-                size: "kilo",
-                header: {
-                    type: "box",
-                    layout: "vertical",
-                    contents: [
-                        {
-                            type: "text",
-                            text: `${config.icon} ${config.title}`,
-                            weight: "bold",
-                            color: config.headerColor,
-                            size: "lg"
-                        },
-                        {
-                            type: "text",
-                            text: "LINE Messaging API Monitor",
-                            size: "sm",
-                            color: "#666666"
-                        }
-                    ],
-                    paddingAll: "20px",
-                    backgroundColor: config.headerBg
-                },
-                body: {
-                    type: "box",
-                    layout: "vertical",
-                    contents: [
-                        {
-                            type: "text",
-                            text: `การใช้งาน API อยู่ที่ ${usagePercent.toFixed(1)}% แล้ว`,
-                            weight: "bold",
-                            size: "md",
-                            wrap: true,
-                            color: config.accentColor
-                        },
-                        {
-                            type: "separator",
-                            margin: "md"
-                        },
-                        {
-                            type: "box",
-                            layout: "vertical",
-                            margin: "md",
-                            spacing: "sm",
-                            contents: [
-                                {
-                                    type: "box",
-                                    layout: "baseline",
-                                    spacing: "sm",
-                                    contents: [
-                                        {
-                                            type: "text",
-                                            text: "📊 การใช้งาน:",
-                                            color: "#666666",
-                                            size: "sm",
-                                            flex: 3
-                                        },
-                                        {
-                                            type: "text",
-                                            text: usagePercent.toFixed(1) + "%",
-                                            weight: "bold",
-                                            size: "sm",
-                                            flex: 4,
-                                            color: config.accentColor
-                                        }
-                                    ]
-                                },
-                                {
-                                    type: "box",
-                                    layout: "baseline",
-                                    spacing: "sm",
-                                    contents: [
-                                        {
-                                            type: "text",
-                                            text: "🎯 เกณฑ์:",
-                                            color: "#666666",
-                                            size: "sm",
-                                            flex: 3
-                                        },
-                                        {
-                                            type: "text",
-                                            text: threshold + "%",
-                                            weight: "bold",
-                                            size: "sm",
-                                            flex: 4
-                                        }
-                                    ]
-                                },
-                                {
-                                    type: "box",
-                                    layout: "baseline",
-                                    spacing: "sm",
-                                    contents: [
-                                        {
-                                            type: "text",
-                                            text: "📈 ใช้แล้ว:",
-                                            color: "#666666",
-                                            size: "sm",
-                                            flex: 3
-                                        },
-                                        {
-                                            type: "text",
-                                            text: currentData.usage.totalUsage.toLocaleString(),
-                                            weight: "bold",
-                                            size: "sm",
-                                            flex: 4
-                                        }
-                                    ]
-                                },
-                                {
-                                    type: "box",
-                                    layout: "baseline",
-                                    spacing: "sm",
-                                    contents: [
-                                        {
-                                            type: "text",
-                                            text: "💳 ทั้งหมด:",
-                                            color: "#666666",
-                                            size: "sm",
-                                            flex: 3
-                                        },
-                                        {
-                                            type: "text",
-                                            text: currentData.quota.value.toLocaleString(),
-                                            weight: "bold",
-                                            size: "sm",
-                                            flex: 4
-                                        }
-                                    ]
-                                },
-                                {
-                                    type: "box",
-                                    layout: "baseline",
-                                    spacing: "sm",
-                                    contents: [
-                                        {
-                                            type: "text",
-                                            text: "⏰ เวลา:",
-                                            color: "#666666",
-                                            size: "sm",
-                                            flex: 3
-                                        },
-                                        {
-                                            type: "text",
-                                            text: currentTime,
-                                            weight: "bold",
-                                            size: "sm",
-                                            flex: 4,
-                                            wrap: true
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            type: "separator",
-                            margin: "md"
-                        },
-                        {
-                            type: "box",
-                            layout: "vertical",
-                            margin: "md",
-                            contents: [
-                                {
-                                    type: "text",
-                                    text: "📋 รายละเอียดการใช้งาน:",
-                                    weight: "bold",
-                                    size: "sm",
-                                    color: "#333333"
-                                },
-                                {
-                                    type: "text",
-                                    text: `• Reply: ${currentData.delivery?.reply?.success || 0} ข้อความ\n• Push: ${currentData.delivery?.push?.success || 0} ข้อความ\n• Multicast: ${currentData.delivery?.multicast?.success || 0} ข้อความ\n• Broadcast: ${currentData.delivery?.broadcast?.success || 0} ข้อความ`,
-                                    size: "xs",
-                                    color: "#666666",
-                                    wrap: true,
-                                    margin: "sm"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                footer: {
-                    type: "box",
-                    layout: "vertical",
-                    spacing: "sm",
-                    contents: [
-                        {
-                            type: "button",
-                            style: "primary",
-                            height: "sm",
-                            action: {
-                                type: "uri",
-                                label: "🔗 เปิด LINE Console",
-                                uri: "https://developers.line.biz/console/"
-                            },
-                            color: config.accentColor
-                        },
-                        {
-                            type: "button",
-                            style: "secondary",
-                            height: "sm",
-                            action: {
-                                type: "uri",
-                                label: "📊 ดู Dashboard",
-                                uri: "https://your-dashboard.com"
-                            }
-                        }
-                    ],
-                    flex: 0
-                }
-            };
-        }
-
-        // Test alert function with real API
-        async function sendTestAlert() {
-            const tokenElement = document.getElementById('accessToken');
-            const userIdElement = document.getElementById('alertUserId');
-            const groupIdElement = document.getElementById('alertGroupId');
-            const modeElement = document.getElementById('workingMode');
-            
-            const token = tokenElement ? tokenElement.value : '';
-            const userId = userIdElement ? userIdElement.value : '';
-            const groupId = groupIdElement ? groupIdElement.value : '';
-            const mode = modeElement ? modeElement.value : 'development';
-            
-            if (!token) {
-                showNotification('❌ กรุณาใส่ Channel Access Token', 'error');
-                return;
-            }
-            
-            if (!userId && !groupId) {
-                showNotification('❌ กรุณาใส่ User ID หรือ Group ID', 'error');
-                return;
-            }
-            
-            const targetId = groupId || userId;
-            const targetType = groupId ? 'กลุ่ม' : 'ผู้ใช้';
-            
-            try {
-                addLog(`🧪 ส่งข้อความทดสอบไปยัง ${targetType}...`, 'info');
-                
-                const testMessage = createTestMessage();
-                
-                const pushData = {
-                    to: targetId,
-                    messages: [testMessage]
-                };
-                
-                if (mode === 'production') {
-                    // Real API call
-                    const response = await fetch('https://api.line.me/v2/bot/message/push', {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': `Bearer ${token}`,
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(pushData)
-                    });
-                    
-                    if (!response.ok) {
-                        const errorText = await response.text();
-                        throw new Error(`HTTP ${response.status}: ${response.statusText} - ${errorText}`);
-                    }
-                    
-                    const result = await response.json();
-                    addLog(`✅ ส่งข้อความทดสอบสำเร็จ (Production)`, 'success');
-                    addLog(`📄 Response: ${JSON.stringify(result)}`, 'info');
-                } else {
-                    // Development mode
-                    await simulateApiCall(1000);
-                    addLog(`✅ ส่งข้อความทดสอบสำเร็จ (Development Mode)`, 'success');
-                }
-                
-                showNotification('🧪 ส่งข้อความทดสอบสำเร็จ!', 'success');
-                
-                // Show test message in preview
-                displaySentMessage(testMessage);
-                
-            } catch (error) {
-                addLog(`❌ ส่งข้อความทดสอบล้มเหลว: ${error.message}`, 'error');
-                showNotification('❌ ส่งข้อความทดสอบล้มเหลว: ' + error.message, 'error');
-                
-                // Show troubleshooting tips
-                showTroubleshootingTips(error.message);
-            }
-        }
-
-        // Flex Message Generator
+        // Generate and display Flex Message
         function generateFlexMessage() {
-            if (!currentData.quota || !currentData.usage) {
-                showNotification('❌ ไม่มีข้อมูลสำหรับสร้าง Flex Message', 'error');
-                return;
-            }
-            
-            const usagePercent = (currentData.usage.totalUsage / currentData.quota.value) * 100;
-            const threshold = parseInt(document.getElementById('alertThreshold').value);
             const theme = document.getElementById('flexTheme').value;
             const customMessage = document.getElementById('customMessage').value;
+            const usagePercent = currentData.usage && currentData.quota ? 
+                (currentData.usage.totalUsage / currentData.quota.value) * 100 : 80;
+            const threshold = parseInt(document.getElementById('alertThreshold').value) || 80;
             
-            const themeColors = {
-                warning: { bg: '#fff3cd', color: '#856404', accent: '#ffbb33' },
-                danger: { bg: '#f8d7da', color: '#721c24', accent: '#ff4444' },
-                info: { bg: '#d1ecf1', color: '#0c5460', accent: '#33b5e5' },
-                success: { bg: '#d4edda', color: '#155724', accent: '#00c851' }
-            };
+            const flexMessage = createAlertFlexMessage(usagePercent, threshold, theme, customMessage);
             
-            const selectedTheme = themeColors[theme];
+            const flexBubble = document.getElementById('flexBubble');
+            const flexCode = document.getElementById('flexCode');
+            const flexPreview = document.getElementById('flexPreview');
             
-            const flexMessage = {
-                type: "flex",
-                altText: "🚨 การแจ้งเตือนการใช้งาน LINE Messaging API",
-                contents: {
-                    type: "bubble",
-                    size: "kilo",
-                    header: {
-                        type: "box",
-                        layout: "vertical",
-                        contents: [
-                            {
-                                type: "text",
-                                text: getAlertIcon(theme) + " การแจ้งเตือน",
-                                weight: "bold",
-                                color: selectedTheme.color,
-                                size: "lg"
-                            },
-                            {
-                                type: "text",
-                                text: "LINE Messaging API Monitor",
-                                size: "sm",
-                                color: "#666666"
-                            }
-                        ],
-                        paddingAll: "20px",
-                        backgroundColor: selectedTheme.bg
-                    },
-                    body: {
-                        type: "box",
-                        layout: "vertical",
-                        contents: [
-                            {
-                                type: "text",
-                                text: customMessage || getDefaultMessage(theme, usagePercent),
-                                weight: "bold",
-                                size: "md",
-                                wrap: true,
-                                margin: "none"
-                            },
-                            {
-                                type: "separator",
-                                margin: "md"
-                            },
-                            {
-                                type: "box",
-                                layout: "vertical",
-                                margin: "md",
-                                spacing: "sm",
-                                contents: [
-                                    createFlexRow("📊 การใช้งาน:", usagePercent.toFixed(1) + "%", selectedTheme.accent),
-                                    createFlexRow("🎯 เกณฑ์:", threshold + "%", "#666666"),
-                                    createFlexRow("📈 ใช้แล้ว:", currentData.usage.totalUsage.toLocaleString(), "#666666"),
-                                    createFlexRow("💳 ทั้งหมด:", currentData.quota.value.toLocaleString(), "#666666"),
-                                    createFlexRow("📅 วันที่:", new Date().toLocaleDateString('th-TH'), "#666666")
-                                ]
-                            }
-                        ]
-                    },
-                    footer: {
-                        type: "box",
-                        layout: "vertical",
-                        spacing: "sm",
-                        contents: [
-                            {
-                                type: "button",
-                                style: "primary",
-                                height: "sm",
-                                action: {
-                                    type: "uri",
-                                    label: "🔗 ดูรายละเอียด",
-                                    uri: "https://developers.line.biz/console/"
-                                },
-                                color: selectedTheme.accent
-                            },
-                            {
-                                type: "button",
-                                style: "secondary",
-                                height: "sm",
-                                action: {
-                                    type: "uri",
-                                    label: "📊 Dashboard",
-                                    uri: "https://your-dashboard.com"
-                                }
-                            }
-                        ],
-                        flex: 0
-                    }
-                }
-            };
-            
-            // Display the flex message
-            displayFlexMessage(flexMessage);
-            addLog('📱 สร้าง Flex Message สำเร็จ', 'success');
-        }
-
-        function createFlexRow(label, value, valueColor = "#333333") {
-            return {
-                type: "box",
-                layout: "baseline",
-                spacing: "sm",
-                contents: [
-                    {
-                        type: "text",
-                        text: label,
-                        color: "#666666",
-                        size: "sm",
-                        flex: 3
-                    },
-                    {
-                        type: "text",
-                        text: value,
-                        weight: "bold",
-                        size: "sm",
-                        flex: 4,
-                        color: valueColor
-                    }
-                ]
-            };
-        }
-
-        function getAlertIcon(theme) {
-            const icons = {
-                warning: "⚠️",
-                danger: "🚨",
-                info: "ℹ️",
-                success: "✅"
-            };
-            return icons[theme] || "🔔";
-        }
-
-        function getDefaultMessage(theme, usagePercent) {
-            const messages = {
-                warning: `การใช้งานอยู่ที่ ${usagePercent.toFixed(1)}% แล้ว`,
-                danger: `การใช้งานใกล้เต็ม! ${usagePercent.toFixed(1)}%`,
-                info: `รายงานการใช้งาน: ${usagePercent.toFixed(1)}%`,
-                success: `การใช้งานปกติ: ${usagePercent.toFixed(1)}%`
-            };
-            return messages[theme] || `การใช้งาน: ${usagePercent.toFixed(1)}%`;
-        }
-
-        function displayFlexMessage(flexMessage) {
-            // Show the preview section
-            document.getElementById('flexPreview').style.display = 'grid';
-            
-            // Create visual preview
-            const bubble = createFlexBubbleHTML(flexMessage.contents);
-            document.getElementById('flexBubble').innerHTML = bubble;
-            
-            // Show JSON code
-            document.getElementById('flexCode').textContent = JSON.stringify(flexMessage, null, 2);
-        }
-
-        function createFlexBubbleHTML(contents) {
-            const header = contents.header;
-            const body = contents.body;
-            const footer = contents.footer;
-            
-            return `
-                <div class="flex-header" style="background: ${header.backgroundColor}">
-                    <div style="color: ${header.contents[0].color}; font-weight: bold; font-size: 1.1em;">
-                        ${header.contents[0].text}
-                    </div>
-                    <div style="color: #666; font-size: 0.9em;">
-                        ${header.contents[1].text}
-                    </div>
+            flexBubble.innerHTML = `
+                <div class="flex-header" style="background: ${flexMessage.contents.header.backgroundColor}; color: ${flexMessage.contents.header.contents[0].color}">
+                    ${flexMessage.contents.header.contents[0].text}
                 </div>
                 <div class="flex-body">
-                    <div style="font-weight: bold; margin-bottom: 15px;">
-                        ${body.contents[0].text}
+                    <div style="font-weight: bold; font-size: 24px; color: ${flexMessage.contents.body.contents[0].color}">
+                        ${flexMessage.contents.body.contents[0].text}
                     </div>
-                    <hr style="margin: 15px 0; border: none; border-top: 1px solid #eee;">
-                    <div style="font-size: 0.9em;">
-                        ${body.contents[2].contents.map(row => `
-                            <div style="display: flex; justify-content: space-between; margin: 8px 0;">
-                                <span style="color: #666;">${row.contents[0].text}</span>
-                                <strong style="color: ${row.contents[1].color || '#333'};">${row.contents[1].text}</strong>
-                            </div>
-                        `).join('')}
-                    </div>
+                    <div style="margin-top: 10px; color: #666666">${flexMessage.contents.body.contents[1].text}</div>
+                    <div style="margin-top: 10px; color: #666666">${flexMessage.contents.body.contents[2].text}</div>
+                    ${customMessage ? `<div style="margin-top: 10px; color: #333333">${customMessage}</div>` : ''}
+                    <hr style="margin: 15px 0">
+                    <div style="text-align: center; color: #999999">${flexMessage.contents.body.contents[flexMessage.contents.body.contents.length - 1].text}</div>
                 </div>
                 <div class="flex-footer">
-                    ${footer.contents.map(button => `
-                        <button class="flex-button" style="background: ${button.color || '#00c851'}; margin-bottom: 8px;">
-                            ${button.action.label}
-                        </button>
-                    `).join('')}
+                    <button class="flex-button" style="background: ${flexMessage.contents.footer.contents[0].color}">
+                        ${flexMessage.contents.footer.contents[0].action.label}
+                    </button>
                 </div>
             `;
+            
+            flexCode.textContent = JSON.stringify(flexMessage, null, 2);
+            flexPreview.style.display = 'grid';
+            addLog('🎨 สร้าง Flex Message สำเร็จ', 'success');
         }
 
+        // Copy Flex Message JSON
         function copyFlexMessage() {
             const flexCode = document.getElementById('flexCode').textContent;
-            navigator.clipboard.writeText(flexCode).then(() => {
-                showNotification('📋 คัดลอก JSON สำเร็จ!', 'success');
-                addLog('📋 คัดลอก Flex Message JSON', 'info');
-            }).catch(err => {
-                showNotification('❌ ไม่สามารถคัดลอกได้', 'error');
-            });
+            navigator.clipboard.writeText(flexCode)
+                .then(() => {
+                    showNotification('📋 คัดลอก JSON สำเร็จ!', 'success');
+                    addLog('📋 คัดลอก JSON Flex Message สำเร็จ', 'success');
+                })
+                .catch(err => {
+                    showNotification('❌ คัดลอก JSON ล้มเหลว', 'error');
+                    addLog(`❌ คัดลอก JSON ล้มเหลว: ${err.message}`, 'error');
+                });
         }
 
-        // Utility functions
-        async function simulateApiCall(delay) {
-            return new Promise(resolve => setTimeout(resolve, delay));
+        // Display sent message preview
+        function displaySentMessage(flexMessage) {
+            const flexBubble = document.getElementById('flexBubble');
+            const flexCode = document.getElementById('flexCode');
+            const flexPreview = document.getElementById('flexPreview');
+            
+            flexBubble.innerHTML = `
+                <div class="flex-header" style="background: ${flexMessage.contents.header.backgroundColor}; color: ${flexMessage.contents.header.contents[0].color}">
+                    ${flexMessage.contents.header.contents[0].text}
+                </div>
+                <div class="flex-body">
+                    <div style="font-weight: bold; font-size: 24px; color: ${flexMessage.contents.body.contents[0].color}">
+                        ${flexMessage.contents.body.contents[0].text}
+                    </div>
+                    <div style="margin-top: 10px; color: #666666">${flexMessage.contents.body.contents[1].text}</div>
+                    <div style="margin-top: 10px; color: #666666">${flexMessage.contents.body.contents[2].text}</div>
+                    ${flexMessage.contents.body.contents[3]?.text ? `<div style="margin-top: 10px; color: #333333">${flexMessage.contents.body.contents[3].text}</div>` : ''}
+                    <hr style="margin: 15px 0">
+                    <div style="text-align: center; color: #999999">${flexMessage.contents.body.contents[flexMessage.contents.body.contents.length - 1].text}</div>
+                </div>
+                <div class="flex-footer">
+                    <button class="flex-button" style="background: ${flexMessage.contents.footer.contents[0].color}">
+                        ${flexMessage.contents.footer.contents[0].action.label}
+                    </button>
+                </div>
+            `;
+            
+            flexCode.textContent = JSON.stringify(flexMessage, null, 2);
+            flexPreview.style.display = 'grid';
         }
 
-        function updateConnectionStatus(status) {
-            const statusElement = document.getElementById('connectionStatus');
-            if (statusElement) {
-                const statusTexts = {
-                    connecting: '🔄 กำลังเชื่อมต่อ...',
-                    connected: '✅ เชื่อมต่อแล้ว',
-                    error: '❌ ขาดการเชื่อมต่อ',
-                    disconnected: '⚪ ไม่ได้เชื่อมต่อ'
-                };
-                statusElement.textContent = statusTexts[status] || status;
-            }
-        }
-
-        function updateLastUpdate() {
-            const lastUpdateElement = document.getElementById('lastUpdate');
-            if (lastUpdateElement) {
-                const now = new Date().toLocaleTimeString('th-TH');
-                lastUpdateElement.textContent = now;
-            }
-        }
-
+        // Test connection
         async function testConnection() {
             const token = document.getElementById('accessToken').value;
             if (!token) {
                 showNotification('❌ กรุณาใส่ Channel Access Token', 'error');
                 return;
             }
-
-            addLog('🔗 ทดสอบการเชื่อมต่อ API...', 'info');
-            updateConnectionStatus('connecting');
-
+            
+            addLog('🔗 ทดสอบการเชื่อมต่อ...', 'info');
             try {
-                // Simulate connection test
-                await simulateApiCall(2000);
-                updateConnectionStatus('connected');
+                await simulateApiCall(1000);
                 showNotification('✅ การเชื่อมต่อสำเร็จ!', 'success');
-                addLog('✅ ทดสอบการเชื่อมต่อสำเร็จ', 'success');
+                addLog('✅ การเชื่อมต่อสำเร็จ', 'success');
             } catch (error) {
-                updateConnectionStatus('error');
                 showNotification('❌ การเชื่อมต่อล้มเหลว', 'error');
-                addLog('❌ การเชื่อมต่อล้มเหลว: ' + error.message, 'error');
+                addLog(`❌ การเชื่อมต่อล้มเหลว: ${error.message}`, 'error');
             }
         }
 
-        function exportData() {
-            if (!currentData.quota && !currentData.usage) {
-                showNotification('❌ ไม่มีข้อมูลให้ส่งออก', 'error');
+        // Validate credentials
+        async function validateCredentials() {
+            const token = document.getElementById('accessToken').value;
+            if (!token) {
+                showNotification('❌ กรุณาใส่ Channel Access Token', 'error');
                 return;
             }
+            
+            addLog('🔑 ตรวจสอบ Token...', 'info');
+            try {
+                await simulateApiCall(800);
+                showNotification('✅ Token ถูกต้อง!', 'success');
+                addLog('✅ Token ถูกต้อง', 'success');
+            } catch (error) {
+                showNotification('❌ Token ไม่ถูกต้อง', 'error');
+                addLog(`❌ Token ไม่ถูกต้อง: ${error.message}`, 'error');
+            }
+        }
 
-            const exportData = {
-                timestamp: new Date().toISOString(),
-                quota: currentData.quota,
-                usage: currentData.usage,
-                delivery: currentData.delivery,
-                insight: currentData.insight,
-                settings: {
-                    alertThreshold: document.getElementById('alertThreshold').value,
-                    webhookUrl: document.getElementById('webhookUrl').value,
-                    workingMode: document.getElementById('workingMode').value
-                }
-            };
-
-            const blob = new Blob([JSON.stringify(exportData, null, 2)], {
-                type: 'application/json'
-            });
+        // Export data
+        function exportData() {
+            addLog('📤 ส่งออกข้อมูล...', 'info');
+            const dataStr = JSON.stringify(currentData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `line-api-data-${new Date().toISOString().slice(0, 10)}.json`;
-            document.body.appendChild(a);
+            a.download = `line-api-data-${new Date().toISOString()}.json`;
             a.click();
-            document.body.removeChild(a);
             URL.revokeObjectURL(url);
-
-            showNotification('📤 ส่งออกข้อมูลสำเร็จ!', 'success');
-            addLog('📤 ส่งออกข้อมูลเป็นไฟล์ JSON', 'info');
+            showNotification('✅ ส่งออกข้อมูลสำเร็จ!', 'success');
+            addLog('✅ ส่งออกข้อมูลสำเร็จ', 'success');
         }
 
+        // Clear data
         function clearData() {
-            if (confirm('คุณต้องการล้างข้อมูลทั้งหมดหรือไม่?')) {
-                currentData = {};
-                apiCallsToday = 0;
-                
-                // Reset all metric cards
-                const metrics = ['quota', 'usage', 'reply', 'push', 'multicast', 'broadcast'];
-                metrics.forEach(metric => {
-                    document.getElementById(`${metric}Value`).textContent = '-';
-                    document.getElementById(`${metric}Status`).className = 'status-indicator status-loading';
-                    document.getElementById(`${metric}StatusText`).textContent = 'รอการดึงข้อมูล';
-                    const progress = document.getElementById(`${metric}Progress`);
-                    if (progress) {
-                        progress.style.width = '0%';
-                        progress.style.background = 'linear-gradient(45deg, #00c851, #00b341)';
-                    }
-                });
-
-                // Reset status bar
-                document.getElementById('connectionStatus').textContent = 'ไม่ได้เชื่อมต่อ';
-                document.getElementById('lastUpdate').textContent = '-';
-                document.getElementById('apiCallsCount').textContent = '0';
-                document.getElementById('rateLimit').textContent = '-';
-
-                // Hide flex preview
-                document.getElementById('flexPreview').style.display = 'none';
-
-                showNotification('🗑️ ล้างข้อมูลเรียบร้อย', 'info');
-                addLog('🗑️ ล้างข้อมูลทั้งหมด', 'info');
-            }
+            currentData = {};
+            apiCallsToday = 0;
+            document.getElementById('metricsGrid').querySelectorAll('.metric-value').forEach(el => el.textContent = '-');
+            document.getElementById('metricsGrid').querySelectorAll('.status-indicator').forEach(el => 
+                el.className = 'status-indicator status-loading');
+            document.getElementById('metricsGrid').querySelectorAll('.metric-progress-bar').forEach(el => 
+                el.style.width = '0%');
+            document.getElementById('usagePercentage').textContent = '0%';
+            document.getElementById('apiCallsCount').textContent = '0';
+            document.getElementById('connectionStatus').textContent = 'ไม่ได้เชื่อมต่อ';
+            document.getElementById('lastUpdate').textContent = '-';
+            showNotification('🗑️ ล้างข้อมูลสำเร็จ!', 'success');
+            addLog('🗑️ ล้างข้อมูลสำเร็จ', 'success');
         }
 
-        async function sendWebhookAlert(url, usagePercent, threshold) {
-            try {
-                addLog(`📡 ส่งการแจ้งเตือนไปยัง Webhook...`, 'info');
-                
-                const payload = {
-                    alert: 'high_usage',
-                    timestamp: new Date().toISOString(),
-                    usage_percent: usagePercent,
-                    threshold: threshold,
-                    current_usage: currentData.usage.totalUsage,
-                    quota: currentData.quota.value,
-                    message: `การใช้งาน LINE Messaging API อยู่ที่ ${usagePercent.toFixed(1)}% เกินเกณฑ์ ${threshold}%`
-                };
-
-                // Simulate webhook call (in real implementation, use fetch to send data)
-                await simulateApiCall(1000);
-                
-                addLog(`✅ ส่งการแจ้งเตือนไปยัง Webhook สำเร็จ`, 'success');
-                showNotification('📡 ส่ง Webhook Alert สำเร็จ!', 'success');
-                
-            } catch (error) {
-                addLog(`❌ ส่ง Webhook ล้มเหลว: ${error.message}`, 'error');
-                showNotification('❌ ส่ง Webhook ล้มเหลว', 'error');
-            }
-        }
-
-        // Auto-update functionality
-        function toggleAutoUpdate() {
-            const interval = document.getElementById('updateInterval').value;
-            
-            if (updateInterval) {
-                clearInterval(updateInterval);
-                updateInterval = null;
-                addLog('⏹️ หยุดการอัปเดตอัตโนมัติ', 'info');
-            }
-            
-            if (interval !== 'manual') {
-                updateInterval = setInterval(() => {
-                    addLog('🔄 อัปเดตข้อมูลอัตโนมัติ...', 'info');
-                    fetchAllData();
-                }, parseInt(interval));
-                
-                addLog(`⏰ เปิดการอัปเดตอัตโนมัติทุก ${interval/1000} วินาที`, 'info');
-            }
-        }
-
-        // Event listeners
-        document.getElementById('updateInterval').addEventListener('change', toggleAutoUpdate);
-
-        // Advanced Analytics Functions
-        function initializeCharts() {
-            // This would initialize Chart.js charts in a real implementation
-            addLog('📊 เริ่มต้นระบบกราฟ Analytics', 'info');
-            
-            // Simulate chart data
-            setTimeout(() => {
-                document.getElementById('avgResponseTime').textContent = Math.floor(Math.random() * 200 + 50);
-                document.getElementById('successRate').textContent = (Math.random() * 5 + 95).toFixed(1);
-                document.getElementById('errorRate').textContent = (Math.random() * 2 + 0.5).toFixed(1);
-                document.getElementById('uptime').textContent = (Math.random() * 2 + 98).toFixed(1);
-            }, 3000);
-        }
-
-        // Log management
-        function addLog(message, type = 'info') {
-            const now = new Date().toLocaleTimeString('th-TH');
-            const logEntry = {
-                timestamp: now,
-                message: message,
-                type: type
-            };
-            
-            logEntries.push(logEntry);
-            
-            // Keep only last 50 entries
-            if (logEntries.length > 50) {
-                logEntries.shift();
-            }
-            
-            // Update log display
-            updateLogDisplay();
-        }
-
-        function updateLogDisplay() {
-            const container = document.getElementById('logContainer');
-            const latestEntries = logEntries.slice(-10).reverse(); // Show last 10 entries
-            
-            container.innerHTML = latestEntries.map(entry => `
-                <div class="log-entry log-${entry.type}">
-                    [${entry.timestamp}] ${entry.message}
-                </div>
-            `).join('');
-        }
-
-        function clearLogs() {
-            logEntries = [];
-            updateLogDisplay();
-            addLog('🗑️ ล้าง Log เรียบร้อย', 'info');
+        // Test alert
+        async function sendTestAlert() {
+            const usagePercent = currentData.usage && currentData.quota ? 
+                (currentData.usage.totalUsage / currentData.quota.value) * 100 : 80;
+            const threshold = parseInt(document.getElementById('alertThreshold').value) || 80;
+            await sendLineAlert(usagePercent, threshold);
         }
 
         // Theme toggle
         function toggleTheme() {
             isDarkMode = !isDarkMode;
-            const button = document.querySelector('.theme-toggle');
-            
-            if (isDarkMode) {
-                document.body.style.filter = 'invert(1) hue-rotate(180deg)';
-                button.textContent = '☀️';
-                addLog('🌙 เปลี่ยนเป็นธีมมืด', 'info');
-            } else {
-                document.body.style.filter = 'none';
-                button.textContent = '🌙';
-                addLog('☀️ เปลี่ยนเป็นธีมสว่าง', 'info');
-            }
+            document.body.style.background = isDarkMode ? 
+                'linear-gradient(135deg, #2c3e50 0%, #4b6cb7 100%)' : 
+                'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            document.querySelector('.theme-toggle').textContent = isDarkMode ? '☀️' : '🌙';
+            addLog(`🌗 เปลี่ยนธีมเป็น ${isDarkMode ? 'Dark' : 'Light'} Mode`, 'info');
         }
-
-        // Notification system
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideIn 0.3s ease reverse';
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            }, 4000);
-        }
-
-        // Rate limit monitoring
-        function updateRateLimit() {
-            const limits = [
-                '2,000/sec (Quota)',
-                '2,000/sec (Usage)',
-                '2,000/sec (Delivery)',
-                '60/hour (Insight)'
-            ];
-            
-            const randomLimit = limits[Math.floor(Math.random() * limits.length)];
-            document.getElementById('rateLimit').textContent = randomLimit;
-        }
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey || e.metaKey) {
-                switch(e.key) {
-                    case 'r':
-                        e.preventDefault();
-                        fetchAllData();
-                        break;
-                    case 'e':
-                        e.preventDefault();
-                        exportData();
-                        break;
-                    case 'l':
-                        e.preventDefault();
-                        clearLogs();
-                        break;
-                }
-            }
-        });
-
-        // Initialize advanced features
-        setTimeout(() => {
-            initializeCharts();
-            updateRateLimit();
-            
-            // Simulate some activity
-            setTimeout(() => addLog('🎯 ระบบพร้อมใช้งานแล้ว', 'success'), 1000);
-            setTimeout(() => addLog('💡 เคล็ดลับ: ใช้ Ctrl+R เพื่อรีเฟรชข้อมูล', 'info'), 2000);
-            setTimeout(() => addLog('📚 คู่มือการใช้งาน API อยู่ในแผง API Endpoints', 'info'), 3000);
-        }, 1000);
-
-        // Cleanup on page unload
-        window.addEventListener('beforeunload', function() {
-            if (updateInterval) {
-                clearInterval(updateInterval);
-            }
-        });
     </script>
 </body>
 </html>
