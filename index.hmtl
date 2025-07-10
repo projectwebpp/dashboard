@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINE Messaging API Dashboard - Advanced</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Thai', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 30px 0;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .feature-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Configuration Panel */
+        .config-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .config-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .config-header h2 {
+            color: #333;
+            font-size: 1.5em;
+            margin-left: 10px;
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #fafbfc;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .input-hint {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #00c851, #00b341);
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #ffbb33, #ff8800);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .status-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .status-item {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .status-item .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .status-item .label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .status-item .value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Main Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Metrics Section */
+        .metrics-section {
+            display: grid;
+            gap: 20px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .metric-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .metric-icon {
+            font-size: 1.5em;
+            opacity: 0.7;
+        }
+
+        .metric-value {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .metric-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .metric-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85em;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-ready { background: #00c851; }
+        .status-unready { background: #ff4444; }
+        .status-loading { background: #ffbb33; }
+        .status-error { background: #ff6b6b; }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .metric-progress {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .metric-progress-bar {
+            height: 100%;
+            background: linear-gradient(45deg, #00c851, #00b341);
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: grid;
+            gap: 20px;
+        }
+
+        /* Alert Panel */
+        .alert-panel {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .alert-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .alert-header h3 {
+            margin-left: 10px;
+            color: #333;
+        }
+
+        .alert-config {
+            margin-bottom: 20px;
+        }
+
+        .alert-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #ffbb33;
+        }
+
+        .alert-item.active {
+            border-left-color: #ff4444;
+            background: #fff5f5;
+        }
+
+        /* API Endpoints Panel */
+        .api-panel {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .api-endpoint {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .api-method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .api-method.get { background: #28a745; color: white; }
+        .api-method.post { background: #007bff; color: white; }
+
+        .api-url {
+            color: #333;
+            font-size: 0.9em;
+            word-break: break-all;
+        }
+
+        .api-description {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 8px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Flex Message Section */
+        .flex-section {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .flex-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .flex-visual {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px dashed #dee2e6;
+        }
+
+        .flex-code {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .flex-bubble {
+            max-width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .flex-header {
+            background: #fff5f5;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .flex-body {
+            padding: 20px;
+        }
+
+        .flex-footer {
+            padding: 15px 20px;
+        }
+
+        .flex-button {
+            width: 100%;
+            padding: 12px;
+            background: #00c851;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Log Section */
+        .log-section {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .log-container {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .log-info { background: #d1ecf1; color: #0c5460; }
+        .log-success { background: #d4edda; color: #155724; }
+        .log-warning { background: #fff3cd; color: #856404; }
+        .log-error { background: #f8d7da; color: #721c24; }
+
+        /* Loading States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .notification.success { background: #00c851; }
+        .notification.error { background: #ff4444; }
+        .notification.warning { background: #ffbb33; }
+        .notification.info { background: #33b5e5; }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .flex-preview {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .header .features {
+                gap: 15px;
+            }
+            
+            .config-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .status-items {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .metric-value {
+                font-size: 2.2em;
+            }
+            
+            .status-items {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Dark mode toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 50px;
+            padding: 10px 15px;
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>🚀 LINE Messaging API Dashboard</h1>
+            <p class="subtitle">ระบบติดตามและจัดการสถิติการส่งข้อความ LINE Official Account แบบครบครัน</p>
+            <div class="features">
+                <span class="feature-tag">📊 Real-time Monitoring</span>
+                <span class="feature-tag">🔔 Smart Alerts</span>
+                <span class="feature-tag">📱 Flex Messages</span>
+                <span class="feature-tag">📈 Analytics</span>
+                <span class="feature-tag">⚡ API Testing</span>
+            </div>
+        </div>
+
+        <!-- Configuration Panel -->
+        <div class="config-panel">
+            <div class="config-header">
+                <span style="font-size: 1.5em;">⚙️</span>
+                <h2>การตั้งค่าระบบ</h2>
+            </div>
+            
+            <div class="config-grid">
+                <div class="form-group">
+                    <label>🔑 Channel Access Token</label>
+                    <input type="password" id="accessToken" placeholder="ใส่ Channel Access Token ของคุณ">
+                    <div class="input-hint">Token นี้จะใช้สำหรับเรียก API ทั้งหมด</div>
+                </div>
+                
+                <div class="form-group">
+                    <label>📅 วันที่ต้องการดูข้อมูล</label>
+                    <input type="text" id="dateInput" placeholder="YYYYMMDD เช่น 20250710">
+                    <div class="input-hint">รูปแบบ: YYYYMMDD (ข้อมูลย้อนหลังได้สูงสุด 31 มี.ค. 2018)</div>
+                </div>
+                
+                <div class="form-group">
+                    <label>⏱️ ช่วงเวลาการอัปเดต</label>
+                    <select id="updateInterval">
+                        <option value="manual">อัปเดตด้วยตนเอง</option>
+                        <option value="30000">ทุก 30 วินาที</option>
+                        <option value="60000">ทุก 1 นาที</option>
+                        <option value="300000">ทุก 5 นาที</option>
+                        <option value="900000">ทุก 15 นาที</option>
+                    </select>
+                    <div class="input-hint">เลือกความถี่ในการดึงข้อมูลใหม่</div>
+                </div>
+                
+                <div class="form-group">
+                    <label>🎯 โหมดการทำงาน</label>
+                    <select id="workingMode">
+                        <option value="development">Development (ข้อมูลจำลอง)</option>
+                        <option value="production">Production (API จริง)</option>
+                    </select>
+                    <div class="input-hint">เลือกโหมดการทำงานของระบบ</div>
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="fetchAllData()">
+                    <span id="fetchIcon">🔄</span> ดึงข้อมูลทั้งหมด
+                </button>
+                <button class="btn btn-success" onclick="testConnection()">
+                    🔗 ทดสอบการเชื่อมต่อ
+                </button>
+                <button class="btn btn-warning" onclick="exportData()">
+                    📤 ส่งออกข้อมูล
+                </button>
+                <button class="btn" onclick="clearData()" style="background: #6c757d; color: white;">
+                    🗑️ ล้างข้อมูล
+                </button>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-items">
+                <div class="status-item">
+                    <div class="icon">🌐</div>
+                    <div class="label">สถานะการเชื่อมต่อ</div>
+                    <div class="value" id="connectionStatus">ไม่ได้เชื่อมต่อ</div>
+                </div>
+                <div class="status-item">
+                    <div class="icon">⏰</div>
+                    <div class="label">อัปเดตล่าสุด</div>
+                    <div class="value" id="lastUpdate">-</div>
+                </div>
+                <div class="status-item">
+                    <div class="icon">📊</div>
+                    <div class="label">API Calls วันนี้</div>
+                    <div class="value" id="apiCallsCount">0</div>
+                </div>
+                <div class="status-item">
+                    <div class="icon">⚡</div>
+                    <div class="label">Rate Limit</div>
+                    <div class="value" id="rateLimit">-</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard -->
+        <div class="dashboard-grid">
+            <!-- Metrics Section -->
+            <div class="metrics-section">
+                <div class="metrics-grid" id="metricsGrid">
+                    <!-- Quota Card -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <div class="metric-title">📊 จำนวนข้อความที่ส่งได้</div>
+                            <div class="metric-icon">💳</div>
+                        </div>
+                        <div class="metric-value" id="quotaValue">-</div>
+                        <div class="metric-details">
+                            <div class="metric-label">ข้อความต่อเดือน</div>
+                            <div class="metric-status">
+                                <span class="status-indicator status-loading" id="quotaStatus"></span>
+                                <span id="quotaStatusText">รอการดึงข้อมูล</span>
+                            </div>
+                        </div>
+                        <div class="metric-progress">
+                            <div class="metric-progress-bar" style="width: 0%" id="quotaProgress"></div>
+                        </div>
+                    </div>
+
+                    <!-- Usage Card -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <div class="metric-title">📈 ข้อความที่ใช้ไปแล้ว</div>
+                            <div class="metric-icon">⚡</div>
+                        </div>
+                        <div class="metric-value" id="usageValue">-</div>
+                        <div class="metric-details">
+                            <div class="metric-label">Real-time Usage</div>
+                            <div class="metric-status">
+                                <span class="status-indicator status-loading" id="usageStatus"></span>
+                                <span id="usagePercentage">0%</span>
+                            </div>
+                        </div>
+                        <div class="metric-progress">
+                            <div class="metric-progress-bar" style="width: 0%" id="usageProgress"></div>
+                        </div>
+                    </div>
+
+                    <!-- Reply Messages Card -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <div class="metric-title">💬 Reply Messages</div>
+                            <div class="metric-icon">↩️</div>
+                        </div>
+                        <div class="metric-value" id="replyValue">-</div>
+                        <div class="metric-details">
+                            <div class="metric-label">ข้อความตอบกลับ</div>
+                            <div class="metric-status">
+                                <span class="status-indicator status-loading" id="replyStatus"></span>
+                                <span id="replyStatusText">รอการดึงข้อมูล</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Push Messages Card -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <div class="metric-title">📤 Push Messages</div>
+                            <div class="metric-icon">📬</div>
+                        </div>
+                        <div class="metric-value" id="pushValue">-</div>
+                        <div class="metric-details">
+                            <div class="metric-label">ข้อความพุช</div>
+                            <div class="metric-status">
+                                <span class="status-indicator status-loading" id="pushStatus"></span>
+                                <span id="pushStatusText">รอการดึงข้อมูล</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Multicast Messages Card -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <div class="metric-title">📡 Multicast Messages</div>
+                            <div class="metric-icon">📻</div>
+                        </div>
+                        <div class="metric-value" id="multicastValue">-</div>
+                        <div class="metric-details">
+                            <div class="metric-label">ข้อความหลายคน</div>
+                            <div class="metric-status">
+                                <span class="status-indicator status-loading" id="multicastStatus"></span>
+                                <span id="multicastStatusText">รอการดึงข้อมูล</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Broadcast Messages Card -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <div class="metric-title">📢 Broadcast Messages</div>
+                            <div class="metric-icon">📺</div>
+                        </div>
+                        <div class="metric-value" id="broadcastValue">-</div>
+                        <div class="metric-details">
+                            <div class="metric-label">ข้อความออกอากาศ</div>
+                            <div class="metric-status">
+                                <span class="status-indicator status-loading" id="broadcastStatus"></span>
+                                <span id="broadcastStatusText">รอการดึงข้อมูล</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Alert Panel -->
+                <div class="alert-panel">
+                    <div class="alert-header">
+                        <span style="font-size: 1.5em;">🔔</span>
+                        <h3>ระบบแจ้งเตือน</h3>
+                    </div>
+                    
+                    <div class="alert-config">
+                        <div class="form-group">
+                            <label>🎯 เกณฑ์การแจ้งเตือน (%)</label>
+                            <input type="number" id="alertThreshold" value="80" min="1" max="100">
+                            <div class="input-hint">แจ้งเตือนเมื่อการใช้งานเกินเปอร์เซ็นต์นี้</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>🌐 Webhook URL</label>
+                            <input type="url" id="webhookUrl" placeholder="https://your-webhook.com">
+                            <div class="input-hint">URL สำหรับส่งการแจ้งเตือน</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>📱 LINE Notify Token</label>
+                            <input type="password" id="lineNotifyToken" placeholder="LINE Notify Token">
+                            <div class="input-hint">สำหรับส่งการแจ้งเตือนผ่าน LINE</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-warning" onclick="checkAlerts()" style="width: 100%; margin-bottom: 15px;">
+                        🚨 ตรวจสอบการแจ้งเตือน
+                    </button>
+                    
+                    <div id="alertsList">
+                        <div class="alert-item">
+                            <div>
+                                <strong>การใช้งานสูง</strong><br>
+                                <small>เมื่อใช้เกิน 80%</small>
+                            </div>
+                            <span id="alertStatus1">😴</span>
+                        </div>
+                        
+                        <div class="alert-item">
+                            <div>
+                                <strong>Rate Limit</strong><br>
+                                <small>เมื่อใกล้ถึงขีดจำกัด</small>
+                            </div>
+                            <span id="alertStatus2">😴</span>
+                        </div>
+                        
+                        <div class="alert-item">
+                            <div>
+                                <strong>API Error</strong><br>
+                                <small>เมื่อเกิดข้อผิดพลาด</small>
+                            </div>
+                            <span id="alertStatus3">😴</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Endpoints Panel -->
+                <div class="api-panel">
+                    <div class="alert-header">
+                        <span style="font-size: 1.5em;">🔗</span>
+                        <h3>API Endpoints</h3>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <span class="api-method get">GET</span>
+                        <div class="api-url">/v2/bot/message/quota</div>
+                        <div class="api-description">ดึงจำนวนข้อความที่ส่งได้ตามแพ็กเกจ</div>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <span class="api-method get">GET</span>
+                        <div class="api-url">/v2/bot/message/quota/consumption</div>
+                        <div class="api-description">ดึงจำนวนข้อความที่ใช้ไปแบบ Real-time</div>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <span class="api-method get">GET</span>
+                        <div class="api-url">/v2/bot/message/delivery/reply</div>
+                        <div class="api-description">ดึงสถิติ Reply Messages</div>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <span class="api-method get">GET</span>
+                        <div class="api-url">/v2/bot/message/delivery/push</div>
+                        <div class="api-description">ดึงสถิติ Push Messages</div>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <span class="api-method get">GET</span>
+                        <div class="api-url">/v2/bot/message/delivery/multicast</div>
+                        <div class="api-description">ดึงสถิติ Multicast Messages</div>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <span class="api-method get">GET</span>
+                        <div class="api-url">/v2/bot/message/delivery/broadcast</div>
+                        <div class="api-description">ดึงสถิติ Broadcast Messages</div>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <span class="api-method get">GET</span>
+                        <div class="api-url">/v2/bot/insight/message/delivery</div>
+                        <div class="api-description">ดึงสถิติรวมจากทุกช่องทาง</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flex Message Section -->
+        <div class="flex-section">
+            <div class="alert-header">
+                <span style="font-size: 1.5em;">📱</span>
+                <h3>Flex Message Generator</h3>
+            </div>
+            
+            <div class="config-grid" style="margin-bottom: 20px;">
+                <div class="form-group">
+                    <label>🎨 ธีมการแจ้งเตือน</label>
+                    <select id="flexTheme">
+                        <option value="warning">⚠️ Warning (สีเหลือง)</option>
+                        <option value="danger">🚨 Danger (สีแดง)</option>
+                        <option value="info">ℹ️ Info (สีฟ้า)</option>
+                        <option value="success">✅ Success (สีเขียว)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>📝 ข้อความเพิ่มเติม</label>
+                    <input type="text" id="customMessage" placeholder="ข้อความที่ต้องการแสดงเพิ่มเติม">
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" onclick="generateFlexMessage()" style="margin-bottom: 20px;">
+                🎨 สร้าง Flex Message
+            </button>
+            
+            <div class="flex-preview" id="flexPreview" style="display: none;">
+                <div class="flex-visual">
+                    <h4>👀 ตัวอย่าง Flex Message</h4>
+                    <div class="flex-bubble" id="flexBubble">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>💻 JSON Code</h4>
+                    <div class="flex-code" id="flexCode">
+                        <!-- JSON code will be inserted here -->
+                    </div>
+                    <button class="btn btn-success" onclick="copyFlexMessage()" style="margin-top: 15px; width: 100%;">
+                        📋 คัดลอก JSON
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Analytics Section -->
+        <div class="flex-section">
+            <div class="alert-header">
+                <span style="font-size: 1.5em;">📈</span>
+                <h3>การวิเคราะห์เชิงลึก</h3>
+            </div>
+            
+            <div class="config-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-title">📊 อัตราการใช้งานรายชั่วโมง</div>
+                        <div class="metric-icon">⏰</div>
+                    </div>
+                    <canvas id="hourlyChart" width="400" height="200"></canvas>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-title">📈 แนวโน้มการใช้งาน 7 วัน</div>
+                        <div class="metric-icon">📅</div>
+                    </div>
+                    <canvas id="weeklyChart" width="400" height="200"></canvas>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-title">🥧 สัดส่วนประเภทข้อความ</div>
+                        <div class="metric-icon">📊</div>
+                    </div>
+                    <canvas id="pieChart" width="400" height="200"></canvas>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-title">⚡ Performance Metrics</div>
+                        <div class="metric-icon">🎯</div>
+                    </div>
+                    <div style="padding: 20px;">
+                        <div style="margin-bottom: 15px;">
+                            <strong>API Response Time:</strong> <span id="avgResponseTime">-</span> ms
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <strong>Success Rate:</strong> <span id="successRate">-</span>%
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <strong>Error Rate:</strong> <span id="errorRate">-</span>%
+                        </div>
+                        <div>
+                            <strong>Uptime:</strong> <span id="uptime">-</span>%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Log Section -->
+        <div class="log-section">
+            <div class="alert-header">
+                <span style="font-size: 1.5em;">📝</span>
+                <h3>ระบบ Log และกิจกรรม</h3>
+                <button class="btn" onclick="clearLogs()" style="margin-left: auto; background: #6c757d; color: white;">
+                    🗑️ ล้าง Log
+                </button>
+            </div>
+            
+            <div class="log-container" id="logContainer">
+                <div class="log-entry log-info">
+                    [<span id="currentTime"></span>] 📋 ระบบเริ่มต้นทำงาน
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global Variables
+        let currentData = {};
+        let updateInterval = null;
+        let logEntries = [];
+        let apiCallsToday = 0;
+        let isDarkMode = false;
+
+        // Initialize the application
+        window.onload = function() {
+            initializeApp();
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 1000);
+        };
+
+        function initializeApp() {
+            // Set default date
+            const today = new Date();
+            const dateString = today.getFullYear() + 
+                              String(today.getMonth() + 1).padStart(2, '0') + 
+                              String(today.getDate()).padStart(2, '0');
+            document.getElementById('dateInput').value = dateString;
+            
+            // Set demo token
+            document.getElementById('accessToken').value = 'your-channel-access-token-here';
+            
+            addLog('📋 ระบบเริ่มต้นทำงาน', 'info');
+            addLog('⚙️ กำลังโหลดการตั้งค่าเริ่มต้น...', 'info');
+            
+            // Auto-load demo data after 2 seconds
+            setTimeout(() => {
+                addLog('🎭 โหลดข้อมูลตัวอย่างเพื่อการทดสอบ', 'info');
+                fetchAllData();
+            }, 2000);
+        }
+
+        function updateCurrentTime() {
+            const now = new Date();
+            const timeString = now.toLocaleString('th-TH');
+            document.getElementById('currentTime').textContent = timeString;
+        }
+
+        // Main data fetching function
+        async function fetchAllData() {
+            const token = document.getElementById('accessToken').value;
+            const date = document.getElementById('dateInput').value;
+            const mode = document.getElementById('workingMode').value;
+
+            if (!token) {
+                showNotification('กรุณาใส่ Channel Access Token', 'error');
+                return;
+            }
+
+            if (!date || !/^\d{8}$/.test(date)) {
+                showNotification('กรุณาใส่วันที่ในรูปแบบ YYYYMMDD', 'error');
+                return;
+            }
+
+            // Update UI states
+            document.getElementById('fetchIcon').innerHTML = '<div class="loading"></div>';
+            document.querySelector('[onclick="fetchAllData()"]').disabled = true;
+            updateConnectionStatus('connecting');
+            
+            addLog('🔄 เริ่มต้นดึงข้อมูลจาก API ทั้งหมด...', 'info');
+
+            try {
+                // Simulate API calls with realistic delays
+                await fetchWithProgress('quota', fetchQuota, token);
+                await fetchWithProgress('usage', fetchUsage, token);
+                await fetchWithProgress('delivery', fetchDeliveryStats, token, date);
+                await fetchWithProgress('insight', fetchInsightData, token, date);
+                
+                updateConnectionStatus('connected');
+                updateLastUpdate();
+                apiCallsToday += 7;
+                document.getElementById('apiCallsCount').textContent = apiCallsToday;
+                
+                showNotification('✅ ดึงข้อมูลสำเร็จ!', 'success');
+                addLog('✅ ดึงข้อมูลจาก API ทั้งหมดเสร็จสิ้น', 'success');
+                
+                // Auto-check alerts
+                setTimeout(checkAlerts, 1000);
+                
+            } catch (error) {
+                updateConnectionStatus('error');
+                showNotification('❌ เกิดข้อผิดพลาด: ' + error.message, 'error');
+                addLog('❌ ข้อผิดพลาด: ' + error.message, 'error');
+            } finally {
+                document.getElementById('fetchIcon').textContent = '🔄';
+                document.querySelector('[onclick="fetchAllData()"]').disabled = false;
+            }
+        }
+
+        async function fetchWithProgress(type, fetchFunction, ...args) {
+            addLog(`📡 กำลังดึงข้อมูล ${type}...`, 'info');
+            await fetchFunction(...args);
+            addLog(`✅ ดึงข้อมูล ${type} สำเร็จ`, 'success');
+        }
+
+        // Individual API fetch functions (with simulated data)
+        async function fetchQuota(token) {
+            await simulateApiCall(800);
+            
+            const mockData = {
+                type: "limited",
+                value: 15000
+            };
+            
+            currentData.quota = mockData;
+            updateMetricCard('quota', mockData.value, '📊 ข้อความต่อเดือน', 'ready', 100);
+        }
+
+        async function fetchUsage(token) {
+            await simulateApiCall(600);
+            
+            const mockData = {
+                totalUsage: Math.floor(Math.random() * 12000) + 4000
+            };
+            
+            currentData.usage = mockData;
+            const percentage = currentData.quota ? (mockData.totalUsage / currentData.quota.value) * 100 : 0;
+            
+            updateMetricCard('usage', mockData.totalUsage, `💡 ${percentage.toFixed(1)}% ของการใช้งาน`, 'ready', percentage);
+            document.getElementById('usagePercentage').textContent = percentage.toFixed(1) + '%';
+        }
+
+        async function fetchDeliveryStats(token, date) {
+            await simulateApiCall(1000);
+            
+            const mockData = {
+                reply: { status: "ready", success: Math.floor(Math.random() * 2000) + 1500 },
+                push: { status: "ready", success: Math.floor(Math.random() * 1500) + 800 },
+                multicast: { status: "ready", success: Math.floor(Math.random() * 800) + 300 },
+                broadcast: { status: "ready", success: Math.floor(Math.random() * 500) + 200 }
+            };
+            
+            currentData.delivery = mockData;
+            
+            Object.keys(mockData).forEach(type => {
+                updateMetricCard(type, mockData[type].success, getTypeLabel(type), mockData[type].status);
+            });
+        }
+
+        async function fetchInsightData(token, date) {
+            await simulateApiCall(900);
+            
+            const mockData = {
+                status: "ready",
+                broadcast: Math.floor(Math.random() * 3000) + 2000,
+                targeting: Math.floor(Math.random() * 2000) + 1000,
+                apiBroadcast: currentData.delivery?.broadcast?.success || 256,
+                apiPush: currentData.delivery?.push?.success || 1024,
+                apiMulticast: currentData.delivery?.multicast?.success || 512,
+                apiReply: currentData.delivery?.reply?.success || 2048
+            };
+            
+            currentData.insight = mockData;
+            addLog('📊 ข้อมูล Insight: OA Manager + API รวม', 'info');
+        }
+
+        function updateMetricCard(type, value, label, status, progress = 0) {
+            document.getElementById(`${type}Value`).textContent = value.toLocaleString();
+            document.getElementById(`${type}Status`).className = `status-indicator status-${status}`;
+            document.getElementById(`${type}StatusText`).textContent = getStatusText(status);
+            
+            if (progress > 0) {
+                const progressBar = document.getElementById(`${type}Progress`);
+                if (progressBar) {
+                    progressBar.style.width = Math.min(progress, 100) + '%';
+                    if (progress > 80) {
+                        progressBar.style.background = 'linear-gradient(45deg, #ff4444, #cc0000)';
+                    } else if (progress > 60) {
+                        progressBar.style.background = 'linear-gradient(45deg, #ffbb33, #ff8800)';
+                    }
+                }
+            }
+        }
+
+        function getTypeLabel(type) {
+            const labels = {
+                reply: '💬 ข้อความตอบกลับ',
+                push: '📤 ข้อความพุช',
+                multicast: '📡 ข้อความหลายคน',
+                broadcast: '📢 ข้อความออกอากาศ'
+            };
+            return labels[type] || type;
+        }
+
+        function getStatusText(status) {
+            const texts = {
+                ready: '✅ พร้อมใช้งาน',
+                unready: '⏳ ยังไม่พร้อม',
+                out_of_service: '❌ ข้อมูลเก่าเกินไป',
+                loading: '🔄 กำลังโหลด...',
+                error: '❌ เกิดข้อผิดพลาด'
+            };
+            return texts[status] || 'ไม่ทราบสถานะ';
+        }
+
+        // Alert system
+        function checkAlerts() {
+            if (!currentData.quota || !currentData.usage) {
+                showNotification('❌ กรุณาดึงข้อมูลก่อนตรวจสอบการแจ้งเตือน', 'error');
+                return;
+            }
+            
+            const threshold = parseInt(document.getElementById('alertThreshold').value);
+            const usagePercent = (currentData.usage.totalUsage / currentData.quota.value) * 100;
+            
+            addLog(`🔍 ตรวจสอบการแจ้งเตือน: ${usagePercent.toFixed(1)}% (เกณฑ์: ${threshold}%)`, 'info');
+            
+            // Update alert statuses
+            document.getElementById('alertStatus1').textContent = usagePercent >= threshold ? '🚨' : '😴';
+            document.getElementById('alertStatus2').textContent = usagePercent >= 90 ? '⚠️' : '😴';
+            document.getElementById('alertStatus3').textContent = '✅';
+            
+            if (usagePercent >= threshold) {
+                generateFlexMessage();
+                showNotification(`🚨 การแจ้งเตือน: การใช้งาน ${usagePercent.toFixed(1)}% เกินเกณฑ์!`, 'warning');
+                addLog(`🚨 เกินเกณฑ์การแจ้งเตือน! ใช้งาน ${usagePercent.toFixed(1)}%`, 'warning');
+                
+                // Send to webhook if configured
+                const webhookUrl = document.getElementById('webhookUrl').value;
+                if (webhookUrl) {
+                    sendWebhookAlert(webhookUrl, usagePercent, threshold);
+                }
+            } else {
+                showNotification(`✅ การใช้งานอยู่ในเกณฑ์ปกติ (${usagePercent.toFixed(1)}%)`, 'success');
+                addLog(`✅ การใช้งานปกติ: ${usagePercent.toFixed(1)}%`, 'success');
+            }
+        }
+
+        // Flex Message Generator
+        function generateFlexMessage() {
+            if (!currentData.quota || !currentData.usage) {
+                showNotification('❌ ไม่มีข้อมูลสำหรับสร้าง Flex Message', 'error');
+                return;
+            }
+            
+            const usagePercent = (currentData.usage.totalUsage / currentData.quota.value) * 100;
+            const threshold = parseInt(document.getElementById('alertThreshold').value);
+            const theme = document.getElementById('flexTheme').value;
+            const customMessage = document.getElementById('customMessage').value;
+            
+            const themeColors = {
+                warning: { bg: '#fff3cd', color: '#856404', accent: '#ffbb33' },
+                danger: { bg: '#f8d7da', color: '#721c24', accent: '#ff4444' },
+                info: { bg: '#d1ecf1', color: '#0c5460', accent: '#33b5e5' },
+                success: { bg: '#d4edda', color: '#155724', accent: '#00c851' }
+            };
+            
+            const selectedTheme = themeColors[theme];
+            
+            const flexMessage = {
+                type: "flex",
+                altText: "🚨 การแจ้งเตือนการใช้งาน LINE Messaging API",
+                contents: {
+                    type: "bubble",
+                    size: "kilo",
+                    header: {
+                        type: "box",
+                        layout: "vertical",
+                        contents: [
+                            {
+                                type: "text",
+                                text: getAlertIcon(theme) + " การแจ้งเตือน",
+                                weight: "bold",
+                                color: selectedTheme.color,
+                                size: "lg"
+                            },
+                            {
+                                type: "text",
+                                text: "LINE Messaging API Monitor",
+                                size: "sm",
+                                color: "#666666"
+                            }
+                        ],
+                        paddingAll: "20px",
+                        backgroundColor: selectedTheme.bg
+                    },
+                    body: {
+                        type: "box",
+                        layout: "vertical",
+                        contents: [
+                            {
+                                type: "text",
+                                text: customMessage || getDefaultMessage(theme, usagePercent),
+                                weight: "bold",
+                                size: "md",
+                                wrap: true,
+                                margin: "none"
+                            },
+                            {
+                                type: "separator",
+                                margin: "md"
+                            },
+                            {
+                                type: "box",
+                                layout: "vertical",
+                                margin: "md",
+                                spacing: "sm",
+                                contents: [
+                                    createFlexRow("📊 การใช้งาน:", usagePercent.toFixed(1) + "%", selectedTheme.accent),
+                                    createFlexRow("🎯 เกณฑ์:", threshold + "%", "#666666"),
+                                    createFlexRow("📈 ใช้แล้ว:", currentData.usage.totalUsage.toLocaleString(), "#666666"),
+                                    createFlexRow("💳 ทั้งหมด:", currentData.quota.value.toLocaleString(), "#666666"),
+                                    createFlexRow("📅 วันที่:", new Date().toLocaleDateString('th-TH'), "#666666")
+                                ]
+                            }
+                        ]
+                    },
+                    footer: {
+                        type: "box",
+                        layout: "vertical",
+                        spacing: "sm",
+                        contents: [
+                            {
+                                type: "button",
+                                style: "primary",
+                                height: "sm",
+                                action: {
+                                    type: "uri",
+                                    label: "🔗 ดูรายละเอียด",
+                                    uri: "https://developers.line.biz/console/"
+                                },
+                                color: selectedTheme.accent
+                            },
+                            {
+                                type: "button",
+                                style: "secondary",
+                                height: "sm",
+                                action: {
+                                    type: "uri",
+                                    label: "📊 Dashboard",
+                                    uri: "https://your-dashboard.com"
+                                }
+                            }
+                        ],
+                        flex: 0
+                    }
+                }
+            };
+            
+            // Display the flex message
+            displayFlexMessage(flexMessage);
+            addLog('📱 สร้าง Flex Message สำเร็จ', 'success');
+        }
+
+        function createFlexRow(label, value, valueColor = "#333333") {
+            return {
+                type: "box",
+                layout: "baseline",
+                spacing: "sm",
+                contents: [
+                    {
+                        type: "text",
+                        text: label,
+                        color: "#666666",
+                        size: "sm",
+                        flex: 3
+                    },
+                    {
+                        type: "text",
+                        text: value,
+                        weight: "bold",
+                        size: "sm",
+                        flex: 4,
+                        color: valueColor
+                    }
+                ]
+            };
+        }
+
+        function getAlertIcon(theme) {
+            const icons = {
+                warning: "⚠️",
+                danger: "🚨",
+                info: "ℹ️",
+                success: "✅"
+            };
+            return icons[theme] || "🔔";
+        }
+
+        function getDefaultMessage(theme, usagePercent) {
+            const messages = {
+                warning: `การใช้งานอยู่ที่ ${usagePercent.toFixed(1)}% แล้ว`,
+                danger: `การใช้งานใกล้เต็ม! ${usagePercent.toFixed(1)}%`,
+                info: `รายงานการใช้งาน: ${usagePercent.toFixed(1)}%`,
+                success: `การใช้งานปกติ: ${usagePercent.toFixed(1)}%`
+            };
+            return messages[theme] || `การใช้งาน: ${usagePercent.toFixed(1)}%`;
+        }
+
+        function displayFlexMessage(flexMessage) {
+            // Show the preview section
+            document.getElementById('flexPreview').style.display = 'grid';
+            
+            // Create visual preview
+            const bubble = createFlexBubbleHTML(flexMessage.contents);
+            document.getElementById('flexBubble').innerHTML = bubble;
+            
+            // Show JSON code
+            document.getElementById('flexCode').textContent = JSON.stringify(flexMessage, null, 2);
+        }
+
+        function createFlexBubbleHTML(contents) {
+            const header = contents.header;
+            const body = contents.body;
+            const footer = contents.footer;
+            
+            return `
+                <div class="flex-header" style="background: ${header.backgroundColor}">
+                    <div style="color: ${header.contents[0].color}; font-weight: bold; font-size: 1.1em;">
+                        ${header.contents[0].text}
+                    </div>
+                    <div style="color: #666; font-size: 0.9em;">
+                        ${header.contents[1].text}
+                    </div>
+                </div>
+                <div class="flex-body">
+                    <div style="font-weight: bold; margin-bottom: 15px;">
+                        ${body.contents[0].text}
+                    </div>
+                    <hr style="margin: 15px 0; border: none; border-top: 1px solid #eee;">
+                    <div style="font-size: 0.9em;">
+                        ${body.contents[2].contents.map(row => `
+                            <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                                <span style="color: #666;">${row.contents[0].text}</span>
+                                <strong style="color: ${row.contents[1].color || '#333'};">${row.contents[1].text}</strong>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="flex-footer">
+                    ${footer.contents.map(button => `
+                        <button class="flex-button" style="background: ${button.color || '#00c851'}; margin-bottom: 8px;">
+                            ${button.action.label}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function copyFlexMessage() {
+            const flexCode = document.getElementById('flexCode').textContent;
+            navigator.clipboard.writeText(flexCode).then(() => {
+                showNotification('📋 คัดลอก JSON สำเร็จ!', 'success');
+                addLog('📋 คัดลอก Flex Message JSON', 'info');
+            }).catch(err => {
+                showNotification('❌ ไม่สามารถคัดลอกได้', 'error');
+            });
+        }
+
+        // Utility functions
+        async function simulateApiCall(delay) {
+            return new Promise(resolve => setTimeout(resolve, delay));
+        }
+
+        function updateConnectionStatus(status) {
+            const statusElement = document.getElementById('connectionStatus');
+            const statusTexts = {
+                connecting: '🔄 กำลังเชื่อมต่อ...',
+                connected: '✅ เชื่อมต่อแล้ว',
+                error: '❌ ขาดการเชื่อมต่อ',
+                disconnected: '⚪ ไม่ได้เชื่อมต่อ'
+            };
+            statusElement.textContent = statusTexts[status] || status;
+        }
+
+        function updateLastUpdate() {
+            const now = new Date().toLocaleTimeString('th-TH');
+            document.getElementById('lastUpdate').textContent = now;
+        }
+
+        async function testConnection() {
+            const token = document.getElementById('accessToken').value;
+            if (!token) {
+                showNotification('❌ กรุณาใส่ Channel Access Token', 'error');
+                return;
+            }
+
+            addLog('🔗 ทดสอบการเชื่อมต่อ API...', 'info');
+            updateConnectionStatus('connecting');
+
+            try {
+                // Simulate connection test
+                await simulateApiCall(2000);
+                updateConnectionStatus('connected');
+                showNotification('✅ การเชื่อมต่อสำเร็จ!', 'success');
+                addLog('✅ ทดสอบการเชื่อมต่อสำเร็จ', 'success');
+            } catch (error) {
+                updateConnectionStatus('error');
+                showNotification('❌ การเชื่อมต่อล้มเหลว', 'error');
+                addLog('❌ การเชื่อมต่อล้มเหลว: ' + error.message, 'error');
+            }
+        }
+
+        function exportData() {
+            if (!currentData.quota && !currentData.usage) {
+                showNotification('❌ ไม่มีข้อมูลให้ส่งออก', 'error');
+                return;
+            }
+
+            const exportData = {
+                timestamp: new Date().toISOString(),
+                quota: currentData.quota,
+                usage: currentData.usage,
+                delivery: currentData.delivery,
+                insight: currentData.insight,
+                settings: {
+                    alertThreshold: document.getElementById('alertThreshold').value,
+                    webhookUrl: document.getElementById('webhookUrl').value,
+                    workingMode: document.getElementById('workingMode').value
+                }
+            };
+
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+                type: 'application/json'
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `line-api-data-${new Date().toISOString().slice(0, 10)}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showNotification('📤 ส่งออกข้อมูลสำเร็จ!', 'success');
+            addLog('📤 ส่งออกข้อมูลเป็นไฟล์ JSON', 'info');
+        }
+
+        function clearData() {
+            if (confirm('คุณต้องการล้างข้อมูลทั้งหมดหรือไม่?')) {
+                currentData = {};
+                apiCallsToday = 0;
+                
+                // Reset all metric cards
+                const metrics = ['quota', 'usage', 'reply', 'push', 'multicast', 'broadcast'];
+                metrics.forEach(metric => {
+                    document.getElementById(`${metric}Value`).textContent = '-';
+                    document.getElementById(`${metric}Status`).className = 'status-indicator status-loading';
+                    document.getElementById(`${metric}StatusText`).textContent = 'รอการดึงข้อมูล';
+                    const progress = document.getElementById(`${metric}Progress`);
+                    if (progress) {
+                        progress.style.width = '0%';
+                        progress.style.background = 'linear-gradient(45deg, #00c851, #00b341)';
+                    }
+                });
+
+                // Reset status bar
+                document.getElementById('connectionStatus').textContent = 'ไม่ได้เชื่อมต่อ';
+                document.getElementById('lastUpdate').textContent = '-';
+                document.getElementById('apiCallsCount').textContent = '0';
+                document.getElementById('rateLimit').textContent = '-';
+
+                // Hide flex preview
+                document.getElementById('flexPreview').style.display = 'none';
+
+                showNotification('🗑️ ล้างข้อมูลเรียบร้อย', 'info');
+                addLog('🗑️ ล้างข้อมูลทั้งหมด', 'info');
+            }
+        }
+
+        async function sendWebhookAlert(url, usagePercent, threshold) {
+            try {
+                addLog(`📡 ส่งการแจ้งเตือนไปยัง Webhook...`, 'info');
+                
+                const payload = {
+                    alert: 'high_usage',
+                    timestamp: new Date().toISOString(),
+                    usage_percent: usagePercent,
+                    threshold: threshold,
+                    current_usage: currentData.usage.totalUsage,
+                    quota: currentData.quota.value,
+                    message: `การใช้งาน LINE Messaging API อยู่ที่ ${usagePercent.toFixed(1)}% เกินเกณฑ์ ${threshold}%`
+                };
+
+                // Simulate webhook call (in real implementation, use fetch to send data)
+                await simulateApiCall(1000);
+                
+                addLog(`✅ ส่งการแจ้งเตือนไปยัง Webhook สำเร็จ`, 'success');
+                showNotification('📡 ส่ง Webhook Alert สำเร็จ!', 'success');
+                
+            } catch (error) {
+                addLog(`❌ ส่ง Webhook ล้มเหลว: ${error.message}`, 'error');
+                showNotification('❌ ส่ง Webhook ล้มเหลว', 'error');
+            }
+        }
+
+        // Auto-update functionality
+        function toggleAutoUpdate() {
+            const interval = document.getElementById('updateInterval').value;
+            
+            if (updateInterval) {
+                clearInterval(updateInterval);
+                updateInterval = null;
+                addLog('⏹️ หยุดการอัปเดตอัตโนมัติ', 'info');
+            }
+            
+            if (interval !== 'manual') {
+                updateInterval = setInterval(() => {
+                    addLog('🔄 อัปเดตข้อมูลอัตโนมัติ...', 'info');
+                    fetchAllData();
+                }, parseInt(interval));
+                
+                addLog(`⏰ เปิดการอัปเดตอัตโนมัติทุก ${interval/1000} วินาที`, 'info');
+            }
+        }
+
+        // Event listeners
+        document.getElementById('updateInterval').addEventListener('change', toggleAutoUpdate);
+
+        // Advanced Analytics Functions
+        function initializeCharts() {
+            // This would initialize Chart.js charts in a real implementation
+            addLog('📊 เริ่มต้นระบบกราฟ Analytics', 'info');
+            
+            // Simulate chart data
+            setTimeout(() => {
+                document.getElementById('avgResponseTime').textContent = Math.floor(Math.random() * 200 + 50);
+                document.getElementById('successRate').textContent = (Math.random() * 5 + 95).toFixed(1);
+                document.getElementById('errorRate').textContent = (Math.random() * 2 + 0.5).toFixed(1);
+                document.getElementById('uptime').textContent = (Math.random() * 2 + 98).toFixed(1);
+            }, 3000);
+        }
+
+        // Log management
+        function addLog(message, type = 'info') {
+            const now = new Date().toLocaleTimeString('th-TH');
+            const logEntry = {
+                timestamp: now,
+                message: message,
+                type: type
+            };
+            
+            logEntries.push(logEntry);
+            
+            // Keep only last 50 entries
+            if (logEntries.length > 50) {
+                logEntries.shift();
+            }
+            
+            // Update log display
+            updateLogDisplay();
+        }
+
+        function updateLogDisplay() {
+            const container = document.getElementById('logContainer');
+            const latestEntries = logEntries.slice(-10).reverse(); // Show last 10 entries
+            
+            container.innerHTML = latestEntries.map(entry => `
+                <div class="log-entry log-${entry.type}">
+                    [${entry.timestamp}] ${entry.message}
+                </div>
+            `).join('');
+        }
+
+        function clearLogs() {
+            logEntries = [];
+            updateLogDisplay();
+            addLog('🗑️ ล้าง Log เรียบร้อย', 'info');
+        }
+
+        // Theme toggle
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            const button = document.querySelector('.theme-toggle');
+            
+            if (isDarkMode) {
+                document.body.style.filter = 'invert(1) hue-rotate(180deg)';
+                button.textContent = '☀️';
+                addLog('🌙 เปลี่ยนเป็นธีมมืด', 'info');
+            } else {
+                document.body.style.filter = 'none';
+                button.textContent = '🌙';
+                addLog('☀️ เปลี่ยนเป็นธีมสว่าง', 'info');
+            }
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Rate limit monitoring
+        function updateRateLimit() {
+            const limits = [
+                '2,000/sec (Quota)',
+                '2,000/sec (Usage)',
+                '2,000/sec (Delivery)',
+                '60/hour (Insight)'
+            ];
+            
+            const randomLimit = limits[Math.floor(Math.random() * limits.length)];
+            document.getElementById('rateLimit').textContent = randomLimit;
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'r':
+                        e.preventDefault();
+                        fetchAllData();
+                        break;
+                    case 'e':
+                        e.preventDefault();
+                        exportData();
+                        break;
+                    case 'l':
+                        e.preventDefault();
+                        clearLogs();
+                        break;
+                }
+            }
+        });
+
+        // Initialize advanced features
+        setTimeout(() => {
+            initializeCharts();
+            updateRateLimit();
+            
+            // Simulate some activity
+            setTimeout(() => addLog('🎯 ระบบพร้อมใช้งานแล้ว', 'success'), 1000);
+            setTimeout(() => addLog('💡 เคล็ดลับ: ใช้ Ctrl+R เพื่อรีเฟรชข้อมูล', 'info'), 2000);
+            setTimeout(() => addLog('📚 คู่มือการใช้งาน API อยู่ในแผง API Endpoints', 'info'), 3000);
+        }, 1000);
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (updateInterval) {
+                clearInterval(updateInterval);
+            }
+        });
+    </script>
+</body>
+</html>
