@@ -1279,9 +1279,21 @@
         }
 
         function updateMetricCard(type, value, label, status, progress = 0) {
-            document.getElementById(`${type}Value`).textContent = value.toLocaleString();
-            document.getElementById(`${type}Status`).className = `status-indicator status-${status}`;
-            document.getElementById(`${type}StatusText`).textContent = getStatusText(status);
+            const valueElement = document.getElementById(`${type}Value`);
+            const statusElement = document.getElementById(`${type}Status`);
+            const statusTextElement = document.getElementById(`${type}StatusText`);
+            
+            if (valueElement) {
+                valueElement.textContent = value.toLocaleString();
+            }
+            
+            if (statusElement) {
+                statusElement.className = `status-indicator status-${status}`;
+            }
+            
+            if (statusTextElement) {
+                statusTextElement.textContent = getStatusText(status);
+            }
             
             if (progress > 0) {
                 const progressBar = document.getElementById(`${type}Progress`);
@@ -2028,18 +2040,23 @@
 
         function updateConnectionStatus(status) {
             const statusElement = document.getElementById('connectionStatus');
-            const statusTexts = {
-                connecting: '🔄 กำลังเชื่อมต่อ...',
-                connected: '✅ เชื่อมต่อแล้ว',
-                error: '❌ ขาดการเชื่อมต่อ',
-                disconnected: '⚪ ไม่ได้เชื่อมต่อ'
-            };
-            statusElement.textContent = statusTexts[status] || status;
+            if (statusElement) {
+                const statusTexts = {
+                    connecting: '🔄 กำลังเชื่อมต่อ...',
+                    connected: '✅ เชื่อมต่อแล้ว',
+                    error: '❌ ขาดการเชื่อมต่อ',
+                    disconnected: '⚪ ไม่ได้เชื่อมต่อ'
+                };
+                statusElement.textContent = statusTexts[status] || status;
+            }
         }
 
         function updateLastUpdate() {
-            const now = new Date().toLocaleTimeString('th-TH');
-            document.getElementById('lastUpdate').textContent = now;
+            const lastUpdateElement = document.getElementById('lastUpdate');
+            if (lastUpdateElement) {
+                const now = new Date().toLocaleTimeString('th-TH');
+                lastUpdateElement.textContent = now;
+            }
         }
 
         async function testConnection() {
